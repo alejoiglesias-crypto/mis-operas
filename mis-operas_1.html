@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Óperas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro:#0a0a0a;--rojo:#8B0000;--rojo-vivo:#c0392b;
+    --dorado:#c9a84c;--crema:#f5f0e8;--gris-medio:#555;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--negro);color:var(--crema);font-family:'Cormorant Garamond',serif;min-height:100vh;}
+  header{background:var(--negro);border-bottom:1px solid var(--rojo);padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.6rem;letter-spacing:0.15em;}
+  .logo span{color:var(--rojo-vivo);font-style:italic;}
+  .header-actions{display:flex;gap:0.8rem;align-items:center;}
+  .sync-status{font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.1em;color:#666;}
+  .sync-status.ok{color:#4caf50;}.sync-status.err{color:var(--rojo-vivo);}
+  .btn{font-family:'Montserrat',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:0.5rem 1.2rem;border:1px solid #d4c5a9;background:transparent;color:var(--crema);cursor:pointer;transition:all 0.3s;}
+  .btn:hover{background:var(--rojo);border-color:var(--rojo);}
+  .btn-primary{background:var(--rojo);border-color:var(--rojo);}
+  .btn-primary:hover{background:var(--rojo-vivo);}
+  .container{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 65px);}
+  .sidebar{border-right:1px solid #222;padding:1.5rem 0;overflow-y:auto;background:#0f0f0f;}
+  .sidebar-title{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--dorado);padding:0 1.2rem 0.8rem;border-bottom:1px solid #222;margin-bottom:0.8rem;}
+  .opera-card{padding:1rem 1.2rem;cursor:pointer;border-left:3px solid transparent;transition:all 0.2s;border-bottom:1px solid #1a1a1a;}
+  .opera-card:hover{background:#1a1a1a;border-left-color:var(--rojo);}
+  .opera-card.active{background:#1a1a1a;border-left-color:var(--rojo-vivo);}
+  .opera-card-num{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;color:var(--dorado);margin-bottom:0.2rem;}
+  .opera-card-title{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;margin-bottom:0.2rem;}
+  .opera-card-sub{font-family:'Montserrat',sans-serif;font-size:0.6rem;color:var(--gris-medio);}
+  .opera-card-rating{color:var(--dorado);font-size:0.75rem;margin-top:0.3rem;}
+  .add-btn{margin:1rem;width:calc(100% - 2rem);padding:0.7rem;background:transparent;border:1px dashed #444;color:#666;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;}
+  .add-btn:hover{border-color:var(--rojo);color:var(--crema);}
+  .detail{padding:2.5rem 3.5rem;overflow-y:auto;max-height:calc(100vh - 65px);}
+  .detail-header{border-bottom:1px solid #222;padding-bottom:1.5rem;margin-bottom:2rem;display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;}
+  .ficha-num{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;color:var(--dorado);margin-bottom:0.4rem;}
+  .opera-title-big{font-family:'Playfair Display',serif;font-size:2.5rem;font-style:italic;line-height:1.1;margin-bottom:0.4rem;}
+  .opera-subtitle{font-size:1rem;color:#999;font-weight:300;}
+  .rating-display{text-align:right;flex-shrink:0;}
+  .stars-input{display:flex;gap:0.2rem;justify-content:flex-end;margin-bottom:0.2rem;}
+  .star{font-size:1.4rem;cursor:pointer;color:#333;transition:color 0.2s;}
+  .star.filled{color:var(--dorado);}.star:hover{color:var(--dorado);}
+  .rating-label{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;color:#666;}
+  .section{margin-bottom:2rem;}
+  .section-title{font-family:'Montserrat',sans-serif;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--dorado);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:1px solid #222;}
+  .fields-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;}
+  .fields-grid.single{grid-template-columns:1fr;}
+  .fields-grid.triple{grid-template-columns:1fr 1fr 1fr;}
+  .field{background:#111;border:1px solid #222;padding:0.7rem 0.9rem;transition:border-color 0.2s;}
+  .field:focus-within{border-color:var(--rojo);}
+  .field-full{grid-column:1/-1;}
+  .field-label{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#666;margin-bottom:0.25rem;}
+  .field-value{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--crema);background:transparent;border:none;width:100%;outline:none;resize:none;line-height:1.4;}
+  .field-value::placeholder{color:#444;font-style:italic;}
+  .reparto-table{width:100%;border-collapse:collapse;}
+  .reparto-table th{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#666;text-align:left;padding:0.4rem 0.7rem;border-bottom:1px solid #222;}
+  .reparto-table td{padding:0.5rem 0.7rem;border-bottom:1px solid #1a1a1a;font-size:0.9rem;}
+  .reparto-table tr:hover td{background:#111;}
+  .personaje{color:#999;font-style:italic;}.voz{color:var(--dorado);font-family:'Montserrat',sans-serif;font-size:0.65rem;}.cantante{font-weight:600;}
+  .links-list{display:flex;flex-direction:column;gap:0.4rem;}
+  .link-item{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0.9rem;background:#111;border:1px solid #222;text-decoration:none;transition:border-color 0.2s;}
+  .link-item:hover{border-color:var(--rojo);}
+  .link-medio{font-family:'Montserrat',sans-serif;font-size:0.65rem;color:var(--crema);flex:1;}
+  .link-lang{font-family:'Montserrat',sans-serif;font-size:0.55rem;color:var(--dorado);min-width:35px;}
+  .link-arrow{color:var(--rojo);}
+  .ticket-box{background:#111;border:1px solid #222;padding:1.2rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+  .ticket-label{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;color:#666;margin-bottom:0.2rem;}
+  .ticket-value{font-size:1rem;}.ticket-value.price{font-size:1.3rem;color:var(--dorado);}
+  .vinculo-tag{display:inline-block;padding:0.25rem 0.7rem;background:#1a1a1a;border:1px solid var(--rojo);font-family:'Montserrat',sans-serif;font-size:0.6rem;color:var(--crema);margin:0.2rem;}
+  .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;color:#333;text-align:center;}
+  .empty-icon{font-size:4rem;margin-bottom:1rem;opacity:0.3;}
+  .empty-text{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;}
+  .loading{display:flex;align-items:center;justify-content:center;height:60vh;}
+  .loading-text{font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.3em;color:#666;animation:pulse 1.5s infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3}50%{opacity:1}}
+  .save-bar{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--rojo);color:var(--crema);padding:0.7rem 1.3rem;font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.2em;cursor:pointer;opacity:0;transition:opacity 0.3s;z-index:200;}
+  .save-bar.visible{opacity:1;}
+  ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:#0a0a0a;}::-webkit-scrollbar-thumb{background:#333;}
+  @media(max-width:800px){
+    .container{grid-template-columns:1fr;}
+    .detail{padding:1.5rem;}
+    .fields-grid,.fields-grid.triple{grid-template-columns:1fr;}
+    .ticket-box{grid-template-columns:1fr 1fr;}
+    .opera-title-big{font-size:1.8rem;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🎭 Mis <span>Óperas</span></div>
+  <div class="header-actions">
+    <span class="sync-status" id="sync-status">Conectando...</span>
+    <button class="btn" onclick="exportarCSV()">Exportar CSV</button>
+    <button class="btn btn-primary" onclick="nuevaOpera()">+ Nueva ficha</button>
+  </div>
+</header>
+<div class="container">
+  <div class="sidebar">
+    <div class="sidebar-title">📋 Mi colección</div>
+    <div id="lista-operas"><div class="loading"><span class="loading-text">CARGANDO...</span></div></div>
+    <button class="add-btn" onclick="nuevaOpera()">+ Añadir ópera</button>
+  </div>
+  <div class="detail" id="detail-panel">
+    <div class="empty-state"><div class="empty-icon">🎭</div><div class="empty-text">Cargando tu colección...</div></div>
+  </div>
+</div>
+<div class="save-bar" id="save-bar" onclick="guardar()">💾 GUARDAR EN LA NUBE</div>
+
+<script>
+const API = 'https://script.google.com/macros/s/AKfycbxnjYIDPjgWAfWUpfRnp-_CcCNX_nCDd8fuO2iqnlIkvlw-YdFsQr-Rs9HVs5kb4Hz6/exec';
+let operas = [], operaActual = null, cambiosPendientes = false;
+
+const INICIALES = [
+  {id:1,num:"001",titulo:"Lucia di Lammermoor",compositor:"Gaetano Donizetti",libretista:"Salvatore Cammarano",fuente:"The Bride of Lammermoor, Walter Scott (1819)",idioma:"Italiano",estreno_mundial:"Teatro San Carlo, Nápoles — 26 septiembre 1835",estreno_teatro:"31 mayo 1851",fecha:"22 de junio de 2018",hora:"20:00",teatro:"Teatro Real",sala:"Sala Principal",ciudad:"Madrid, España",temporada:"2017–2018",tipo_funcion:"Première — función inaugural",contexto:"Cierre de temporada del Bicentenario y 20º aniversario del Teatro Real. La obra no se veía en Madrid desde 2001, con Edita Gruberova.",dir_musical:"Daniel Oren",dir_escena:"David Alden",escenografo:"Charles Edwards",figurinista:"Brigitte Reiffenstuel",iluminacion:"Adam Silverman",dir_coro:"Andrés Máspero",orquesta:"Orquesta Titular del Teatro Real",coro:"Coro Titular del Teatro Real",reparto:[{personaje:"Lucia",voz:"Soprano",cantante:"Lisette Oropesa"},{personaje:"Edgardo",voz:"Tenor",cantante:"Javier Camarena"},{personaje:"Enrico Ashton",voz:"Barítono",cantante:"Artur Ruciński"},{personaje:"Raimondo Bidebent",voz:"Bajo",cantante:"Roberto Tagliavini"},{personaje:"Lord Arturo Bucklaw",voz:"Tenor",cantante:"Yijie Shi"},{personaje:"Alisa",voz:"Mezzosoprano",cantante:"Marina Pinchuk"},{personaje:"Normanno",voz:"Barítono",cantante:"Alejandro del Cerro"}],produccion_origen:"English National Opera (ENO), Londres — 2008/2010",tipo_produccion:"Producción cedida",ambientacion:"Escocia victoriana, siglo XIX",propuesta_escenica:"Atmósfera gótica inspirada en Edgar Allan Poe. Casa victoriana en ruinas, vestuario en blanco y negro, mundo opresivo.",elemento_singular:"Première de la temporada del Bicentenario",criticas:[{medio:"Bachtrack",idioma:"ES/EN",url:"https://bachtrack.com/es_ES/review-lucia-lammermoor-alden-oren-camarena-oropesa-teatro-real-madrid-june-2018"},{medio:"Seen and Heard International",idioma:"EN",url:"https://seenandheard-international.com/2018/06/lucia-di-lammermoor-makes-a-triumphant-return-to-the-teatro-real/"},{medio:"Interlude.hk",idioma:"EN",url:"https://interlude.hk/luxuriously-cast-lucia-di-lammermoor-teatro-real-madrid/"},{medio:"La Cla",idioma:"ES",url:"https://lacla.es/2018/07/19/lucia-di-lammermoor-teatro-real-madrid/"},{medio:"Emociones Líricas",idioma:"EN",url:"http://emocionesliricas.blogspot.com/2018/07/lucia-di-lammermoor-in-teatro-real.html"}],url_teatro:"https://www.teatroreal.es/en/show/lucia-di-lammermoor",url_programa:"https://www.teatroreal.es/sites/default/files/2019-02/Lucia%20di%20Lammemoor%20(2017-2018).pdf",ticket_localidad:"",ticket_fila:"",ticket_asientos:"",ticket_precio_unit:"",ticket_total:"",ticket_fuente:"",ticket_tipo:"",valoracion:0,notas:"",momentos:"",volveria:"",diario:"",contexto_historico:"Lucia di Lammermoor es la obra cumbre del belcanto donizettiano. Su escena de la locura (Ardon gli incensi) es una de las más célebres de toda la historia de la ópera.",vinculos:["Mismo teatro que Carmen 2025 (Ficha 002)"]},
+  {id:2,num:"002",titulo:"Carmen",compositor:"Georges Bizet",libretista:"Henri Meilhac y Ludovic Halévy",fuente:"Novela Carmen (1845) de Prosper Mérimée",idioma:"Francés",estreno_mundial:"Opéra-Comique, París — 3 marzo 1875",estreno_teatro:"14 marzo 1888",fecha:"23 de diciembre de 2025",hora:"19:30",teatro:"Teatro Real",sala:"Sala Principal",ciudad:"Madrid, España",temporada:"2025–2026",tipo_funcion:"Nueva producción",contexto:"150 aniversario del estreno de la ópera. Primera mujer en dirigir una ópera en el Teatro Real (Eun Sun Kim).",dir_musical:"Eun Sun Kim",dir_escena:"Damiano Michieletto",escenografo:"Paolo Fantin",figurinista:"Carla Teti",iluminacion:"Alessandro Carletti",dir_coro:"José Luis Basso",orquesta:"Orquesta Titular del Teatro Real",coro:"Coro Titular del Teatro Real / Coro Intermezzo – OSM / Pequeños Cantores de la ORCAM",reparto:[{personaje:"Carmen",voz:"Mezzosoprano",cantante:"Aigul Akhmetshina"},{personaje:"Don José",voz:"Tenor",cantante:"Charles Castronovo"},{personaje:"Escamillo",voz:"Barítono",cantante:"Lucas Meachem"},{personaje:"Micaëla",voz:"Soprano",cantante:"Adriana González"},{personaje:"Zúñiga",voz:"Bajo",cantante:"David Lagares"},{personaje:"Moralès",voz:"Barítono",cantante:"Toni Marsol"},{personaje:"Frasquita",voz:"Soprano",cantante:"Natalia Labourdette"},{personaje:"Mercédès",voz:"Mezzosoprano",cantante:"Marie-Claude Chappuis"},{personaje:"Le Dancaïre",voz:"Barítono",cantante:"Lluís Calvet"},{personaje:"Le Remendado",voz:"Tenor",cantante:"Mikeldi Atxalandabaso"}],produccion_origen:"Royal Opera House, Londres — 2024",tipo_produccion:"Nueva producción — coproducción Teatro Real / ROH / La Scala",ambientacion:"España, años 70 del siglo XX — pueblo mediterráneo claustrofóbico",propuesta_escenica:"Enfoque naturalista y psicológico de inspiración lorquiana. Escenario circular giratorio. Introduce a la madre de Don José en escena. Final: Don José estrangula a Carmen.",elemento_singular:"Primera mujer dirigiendo ópera en el Teatro Real",criticas:[{medio:"Bachtrack",idioma:"ES",url:"https://bachtrack.com/critica-madrid-teatro-real-kim-orquesta-titular-teatro-real-akhmetshina-gonzalez-castronovo-diciembre-2025"},{medio:"Opera World",idioma:"ES",url:"https://www.operaworld.es/critica-carmen-con-aigul-akhmetshina-en-el-teatro-real-de-madrid/"},{medio:"OperaWire",idioma:"EN",url:"https://operawire.com/teatro-real-de-madrid-2025-26-review-carmen/"},{medio:"Codalario",idioma:"ES",url:"https://www.codalario.com/carmen/criticas/critica-carmen-en-el-teatro-real_14487_5_46542_0_1_in.html"},{medio:"El Diario",idioma:"ES",url:"https://www.eldiario.es/cultura/teatro/carmen-llega-teatro-real-version-desvaida-cani_129_12838083.html"},{medio:"Shangay",idioma:"ES",url:"https://shangay.com/2025/12/11/carmen-viaja-de-la-mano-de-una-soberbia-aigul-akhmetshina-del-teatro-real-a-las-periferias-esteticas-y-eticas/"},{medio:"Beckmesser",idioma:"ES",url:"https://www.beckmesser.com/critica-segundo-reparto-carmen-teatro-real/"}],url_teatro:"https://www.teatroreal.es/en/show/carmen-1",url_programa:"https://www.teatroreal.es/sites/default/files/2025-12/M_PROGRAMA_CARMEN.pdf",ticket_localidad:"Patio de Butacas — Bloque Butaca Premium",ticket_fila:"Fila 11",ticket_asientos:"Asientos 5 y 7",ticket_precio_unit:"289,00 EUR",ticket_total:"582,00 EUR",ticket_fuente:"Ticketshop General — Tarjeta internet",ticket_tipo:"E-ticket (digital)",valoracion:0,notas:"",momentos:"",volveria:"",diario:"",contexto_historico:"Carmen es la última ópera de Bizet y una de las más representadas del mundo. Estrenada en 1875 en París, fue inicialmente mal recibida. Bizet murió tres meses después sin saber que se convertiría en símbolo universal.",vinculos:["Mismo teatro que Lucia di Lammermoor 2018 (Ficha 001)","Damiano Michieletto previamente en el Teatro Real: L'elisir d'amore (2013/2019)"]}
+];
+
+function sync(msg,cls){const e=document.getElementById('sync-status');e.textContent=msg;e.className='sync-status '+(cls||'');}
+
+async function cargarDatos(){
+  try {
+    sync('Conectando...','');
+    const url = API + '?t=' + Date.now();
+    const r = await fetch(url, {mode:'cors'});
+    const d = await r.json();
+    if (d && d.length > 0) {
+      operas = d;
+      sync('✓ Sincronizado','ok');
+    } else {
+      operas = INICIALES;
+      await guardarEnNube(true);
+    }
+  } catch(e) {
+    console.log('Error cargando:', e);
+    const local = localStorage.getItem('mis-operas-bk');
+    operas = local ? JSON.parse(local) : INICIALES;
+    sync('⚠ Sin conexión — datos locales','err');
+  }
+  renderSidebar();
+  if(operas.length > 0) seleccionar(operas[0].id);
+}
+
+async function guardarEnNube(silencioso) {
+  try {
+    if(!silencioso) sync('Guardando...','');
+    const datos = encodeURIComponent(JSON.stringify(operas));
+    const url = API + '?action=save&data=' + datos;
+    const r = await fetch(url, {mode:'cors'});
+    const res = await r.json();
+    if(res.ok) {
+      localStorage.setItem('mis-operas-bk', JSON.stringify(operas));
+      sync('✓ Guardado en la nube','ok');
+      cambiosPendientes = false;
+      document.getElementById('save-bar').classList.remove('visible');
+      setTimeout(()=>sync('✓ Sincronizado','ok'), 2000);
+    } else {
+      throw new Error('Error en respuesta');
+    }
+  } catch(e) {
+    console.log('Error guardando:', e);
+    localStorage.setItem('mis-operas-bk', JSON.stringify(operas));
+    sync('⚠ Guardado local (sin red)','err');
+  }
+}
+
+function guardar(){guardarEnNube();}
+
+function renderSidebar(){
+  const lista = document.getElementById('lista-operas');
+  if(!operas.length){lista.innerHTML='<div style="padding:1rem;color:#444;font-family:Montserrat,sans-serif;font-size:0.7rem;text-align:center">Sin fichas aún</div>';return;}
+  lista.innerHTML = operas.map(o=>`
+    <div class="opera-card ${operaActual&&operaActual.id===o.id?'active':''}" onclick="seleccionar(${o.id})">
+      <div class="opera-card-num">FICHA Nº ${o.num}</div>
+      <div class="opera-card-title">${o.titulo}</div>
+      <div class="opera-card-sub">${o.teatro} · ${o.fecha}</div>
+      <div class="opera-card-rating">${'★'.repeat(o.valoracion)}${'☆'.repeat(5-o.valoracion)}</div>
+    </div>`).join('');
+}
+
+function seleccionar(id){
+  operaActual = operas.find(o=>o.id===id);
+  renderSidebar();
+  renderDetail();
+}
+
+function renderDetail(){
+  const o = operaActual;
+  document.getElementById('detail-panel').innerHTML = `
+    <div class="detail-header">
+      <div>
+        <div class="ficha-num">🎭 FICHA Nº ${o.num}</div>
+        <div class="opera-title-big">${o.titulo}</div>
+        <div class="opera-subtitle">${o.compositor} · ${o.teatro} · ${o.fecha}</div>
+      </div>
+      <div class="rating-display">
+        <div class="stars-input">${[1,2,3,4,5].map(i=>`<span class="star ${i<=o.valoracion?'filled':''}" onclick="setRating(${i})">★</span>`).join('')}</div>
+        <div class="rating-label">Mi valoración</div>
+      </div>
+    </div>
+    <div class="section"><div class="section-title">🔖 Identificación de la obra</div>
+      <div class="fields-grid triple">
+        ${f('Compositor','compositor',o.compositor)}${f('Libretista','libretista',o.libretista)}${f('Idioma','idioma',o.idioma)}
+        ${ff('Fuente literaria','fuente',o.fuente)}${f('Estreno mundial','estreno_mundial',o.estreno_mundial)}${f('Estreno en el Teatro Real','estreno_teatro',o.estreno_teatro)}
+      </div></div>
+    <div class="section"><div class="section-title">📅 La función</div>
+      <div class="fields-grid triple">
+        ${f('Fecha','fecha',o.fecha)}${f('Hora','hora',o.hora)}${f('Teatro','teatro',o.teatro)}
+        ${f('Sala','sala',o.sala)}${f('Ciudad / País','ciudad',o.ciudad)}${f('Temporada','temporada',o.temporada)}
+        ${f('Tipo de función','tipo_funcion',o.tipo_funcion)}${ff('Contexto especial','contexto',o.contexto)}
+      </div></div>
+    <div class="section"><div class="section-title">🎼 Dirección y equipo artístico</div>
+      <div class="fields-grid">
+        ${f('Director musical','dir_musical',o.dir_musical)}${f('Director de escena','dir_escena',o.dir_escena)}
+        ${f('Escenógrafo','escenografo',o.escenografo)}${f('Figurinista','figurinista',o.figurinista)}
+        ${f('Iluminación','iluminacion',o.iluminacion)}${f('Director del Coro','dir_coro',o.dir_coro)}
+        ${ff('Orquesta','orquesta',o.orquesta)}${ff('Coro','coro',o.coro)}
+      </div></div>
+    <div class="section"><div class="section-title">🎤 Reparto</div>
+      <table class="reparto-table"><thead><tr><th>Personaje</th><th>Voz</th><th>Cantante</th></tr></thead>
+      <tbody>${o.reparto.map(r=>`<tr><td class="personaje">${r.personaje}</td><td class="voz">${r.voz}</td><td class="cantante">${r.cantante}</td></tr>`).join('')}</tbody></table></div>
+    <div class="section"><div class="section-title">🏛️ La producción</div>
+      <div class="fields-grid">
+        ${ff('Producción de origen','produccion_origen',o.produccion_origen)}${f('Tipo','tipo_produccion',o.tipo_produccion)}
+        ${f('Ambientación','ambientacion',o.ambientacion)}${ft('Propuesta escénica','propuesta_escenica',o.propuesta_escenica)}
+        ${ff('Elemento singular','elemento_singular',o.elemento_singular)}
+      </div></div>
+    <div class="section"><div class="section-title">📰 Críticas y artículos</div>
+      <div class="links-list">${o.criticas.map(c=>`<a class="link-item" href="${c.url}" target="_blank"><span class="link-medio">${c.medio}</span><span class="link-lang">${c.idioma}</span><span class="link-arrow">→</span></a>`).join('')}</div></div>
+    <div class="section"><div class="section-title">🌐 Enlaces oficiales</div>
+      <div class="links-list">
+        <a class="link-item" href="${o.url_teatro}" target="_blank"><span class="link-medio">Teatro Real — Página de la producción</span><span class="link-arrow">→</span></a>
+        <a class="link-item" href="${o.url_programa}" target="_blank"><span class="link-medio">📄 Programa de mano (PDF oficial)</span><span class="link-arrow">→</span></a>
+      </div></div>
+    <div class="section"><div class="section-title">🎟️ Memorabilia — Entrada</div>
+      <div class="ticket-box">
+        <div><div class="ticket-label">Localidad</div><div class="ticket-value">${o.ticket_localidad||'—'}</div></div>
+        <div><div class="ticket-label">Fila y asientos</div><div class="ticket-value">${o.ticket_fila?o.ticket_fila+' · '+o.ticket_asientos:'—'}</div></div>
+        <div><div class="ticket-label">Precio por entrada</div><div class="ticket-value price">${o.ticket_precio_unit||'—'}</div></div>
+        <div><div class="ticket-label">Total pagado</div><div class="ticket-value price">${o.ticket_total||'—'}</div></div>
+        <div><div class="ticket-label">Fuente de compra</div><div class="ticket-value">${o.ticket_fuente||'—'}</div></div>
+        <div><div class="ticket-label">Tipo de entrada</div><div class="ticket-value">${o.ticket_tipo||'—'}</div></div>
+      </div></div>
+    <div class="section"><div class="section-title">⭐ Mi experiencia personal</div>
+      <div class="fields-grid">
+        ${ft('Notas personales','notas',o.notas,'¿Qué te pareció la función?')}
+        ${ft('Momentos destacados','momentos',o.momentos,'Momentos que no olvidarás...')}
+        ${f('¿La volverías a ver?','volveria',o.volveria,'Sí / No / Con otro reparto...')}
+        ${ft('Diario libre','diario',o.diario,'Lo que sentiste esa noche...')}
+      </div></div>
+    <div class="section"><div class="section-title">📖 Contexto histórico</div>
+      <div class="fields-grid single">${ft('Contexto histórico','contexto_historico',o.contexto_historico)}</div></div>
+    <div class="section"><div class="section-title">🔗 Vínculos con otras fichas</div>
+      <div>${o.vinculos.map(v=>`<span class="vinculo-tag">${v}</span>`).join('')}</div></div>
+  `;
+}
+
+function f(label,key,value,ph=''){return `<div class="field"><div class="field-label">${label}</div><input class="field-value" value="${esc(value)}" placeholder="${ph||label}" onchange="actualizar('${key}',this.value)" oninput="marcarCambio()"></div>`;}
+function ff(label,key,value,ph=''){return `<div class="field field-full"><div class="field-label">${label}</div><input class="field-value" value="${esc(value)}" placeholder="${ph||label}" onchange="actualizar('${key}',this.value)" oninput="marcarCambio()"></div>`;}
+function ft(label,key,value,ph=''){return `<div class="field field-full"><div class="field-label">${label}</div><textarea class="field-value" rows="3" placeholder="${ph||label}" onchange="actualizar('${key}',this.value)" oninput="marcarCambio()">${value||''}</textarea></div>`;}
+function esc(v){return(v||'').toString().replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+
+function actualizar(key,value){
+  if(!operaActual)return;
+  operaActual[key]=value;
+  const idx=operas.findIndex(o=>o.id===operaActual.id);
+  if(idx!==-1)operas[idx][key]=value;
+  renderSidebar();
+}
+
+function marcarCambio(){
+  cambiosPendientes=true;
+  document.getElementById('save-bar').classList.add('visible');
+}
+
+function setRating(n){
+  if(!operaActual)return;
+  operaActual.valoracion=n;
+  const idx=operas.findIndex(o=>o.id===operaActual.id);
+  if(idx!==-1)operas[idx].valoracion=n;
+  document.querySelectorAll('.star').forEach((s,i)=>s.classList.toggle('filled',i<n));
+  renderSidebar();
+  marcarCambio();
+}
+
+function nuevaOpera(){
+  const id=Math.max(...operas.map(o=>o.id),0)+1;
+  const num=String(id).padStart(3,'0');
+  const nueva={id,num,titulo:"Nueva ópera",compositor:"",libretista:"",fuente:"",idioma:"",estreno_mundial:"",estreno_teatro:"",fecha:"",hora:"",teatro:"",sala:"Sala Principal",ciudad:"",temporada:"",tipo_funcion:"",contexto:"",dir_musical:"",dir_escena:"",escenografo:"",figurinista:"",iluminacion:"",dir_coro:"",orquesta:"",coro:"",reparto:[],produccion_origen:"",tipo_produccion:"",ambientacion:"",propuesta_escenica:"",elemento_singular:"",criticas:[],url_teatro:"",url_programa:"",ticket_localidad:"",ticket_fila:"",ticket_asientos:"",ticket_precio_unit:"",ticket_total:"",ticket_fuente:"",ticket_tipo:"",valoracion:0,notas:"",momentos:"",volveria:"",diario:"",contexto_historico:"",vinculos:[]};
+  operas.push(nueva);
+  seleccionar(id);
+  marcarCambio();
+}
+
+function exportarCSV(){
+  const h=['Nº','Título','Compositor','Fecha','Teatro','Ciudad','Dir. Musical','Dir. Escena','Valoración','Total pagado'];
+  const rows=operas.map(o=>[o.num,o.titulo,o.compositor,o.fecha,o.teatro,o.ciudad,o.dir_musical,o.dir_escena,o.valoracion,o.ticket_total]);
+  const csv=[h,...rows].map(r=>r.map(c=>`"${c}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download='mis-operas.csv';a.click();
+}
+
+cargarDatos();
+</script>
+</body>
+</html>
