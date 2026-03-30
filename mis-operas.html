@@ -178,7 +178,9 @@ async function cargarDatos(){
     sync('Conectando','');
     const r=await fetch(BIN_URL+'/latest',{headers:{'X-Master-Key':API_KEY}});
     const d=await r.json();
-    if(d.record&&d.record.operas&&d.record.operas.length>0){operas=d.record.operas;sync('Sincronizado','ok');}
+    const remoto=d.record&&d.record.operas;
+    const tieneContenido=remoto&&remoto.length>0&&remoto[0].compositor&&remoto[0].compositor.length>0;
+    if(tieneContenido){operas=remoto;sync('Sincronizado','ok');}
     else{operas=INICIALES;await guardarEnNube(true);}
   } catch(e){
     const local=localStorage.getItem('mis-operas-bk');
