@@ -50,6 +50,15 @@
   /* DETAIL */
   .detail{padding:2.5rem 3rem;overflow-y:auto;max-height:calc(100vh - 58px);background:var(--blanco);}
   .detail-header{padding-bottom:1.5rem;margin-bottom:1.8rem;border-bottom:2px solid var(--borgona);}
+  .detail-header-inner{display:flex;gap:1.5rem;align-items:flex-start;}
+  .poster-wrap{flex-shrink:0;width:110px;}
+  .poster-wrap img{width:110px;height:155px;object-fit:cover;border:0.5px solid var(--linea);display:block;}
+  .poster-url-input{font-family:'Montserrat',sans-serif;font-size:0.42rem;color:var(--gris);background:transparent;border:none;border-bottom:0.5px solid var(--linea);width:110px;outline:none;padding:2px 0;margin-top:4px;}
+  .poster-url-input::placeholder{color:#ccc;}
+  .poster-empty{width:110px;height:155px;border:0.5px dashed var(--linea);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--crema);}
+  .poster-empty-icon{font-size:1.4rem;color:var(--linea);margin-bottom:4px;}
+  .poster-empty-label{font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.1em;color:var(--gris);text-transform:uppercase;text-align:center;line-height:1.6;}
+  .detail-header-text{flex:1;min-width:0;}
   .ficha-num{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.3em;color:var(--borgona);text-transform:uppercase;margin-bottom:0.4rem;}
   .opera-title-big{font-family:'Playfair Display',serif;font-size:2.4rem;font-style:italic;font-weight:400;line-height:1.1;color:var(--negro);margin-bottom:0.3rem;}
   .opera-subtitle{font-family:'EB Garamond',serif;font-size:0.98rem;color:var(--gris);font-style:italic;margin-bottom:1.1rem;}
@@ -220,14 +229,28 @@ function renderDetail(){
   const o=operaActual;
   document.getElementById('detail-panel').innerHTML=`
     <div class="detail-header">
-      <div class="ficha-num">Ficha Nº ${o.num}${o.tipo==='concierto'?' · <span style="color:var(--borgona);font-style:normal">Concierto</span>':''}</div>
-      <div class="opera-title-big">${o.titulo}</div>
-      <div class="opera-subtitle">${o.compositor} · ${o.idioma}</div>
-      <div class="header-meta">
-        <div class="meta-left">${o.teatro} &nbsp;·&nbsp; ${o.fecha} &nbsp;·&nbsp; ${o.hora}</div>
-        <div class="rating-display">
-          <div class="stars-input">${[1,2,3,4,5].map(i=>`<span class="star ${i<=o.valoracion?'filled':''}" onclick="setRating(${i})">★</span>`).join('')}</div>
-          <div class="rating-label">Mi valoración</div>
+      <div class="detail-header-inner">
+        <div class="poster-wrap">
+          ${o.img_url
+            ? `<img src="${o.img_url}" alt="${o.titulo}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`
+            : ''}
+          <div class="poster-empty" style="${o.img_url?'display:none':'display:flex'}">
+            <div class="poster-empty-icon">🎭</div>
+            <div class="poster-empty-label">Añadir<br>cartel</div>
+          </div>
+          <input class="poster-url-input" placeholder="URL del cartel..." value="${esc(o.img_url||'')}" onchange="actualizar('img_url',this.value);renderDetail()" oninput="marcarCambio()">
+        </div>
+        <div class="detail-header-text">
+          <div class="ficha-num">Ficha Nº ${o.num}${o.tipo==='concierto'?' · <span style="color:var(--borgona);font-style:normal">Concierto</span>':''}</div>
+          <div class="opera-title-big">${o.titulo}</div>
+          <div class="opera-subtitle">${o.compositor} · ${o.idioma}</div>
+          <div class="header-meta">
+            <div class="meta-left">${o.teatro} &nbsp;·&nbsp; ${o.fecha} &nbsp;·&nbsp; ${o.hora}</div>
+            <div class="rating-display">
+              <div class="stars-input">${[1,2,3,4,5].map(i=>`<span class="star ${i<=o.valoracion?'filled':''}" onclick="setRating(${i})">★</span>`).join('')}</div>
+              <div class="rating-label">Mi valoración</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
