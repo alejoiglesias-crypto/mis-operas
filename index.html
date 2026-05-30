@@ -36,7 +36,7 @@
 
   /* HERO ROTATIVO */
   .hero{position:relative;height:85vh;overflow:hidden;background:var(--blanco);padding:2rem 3rem;}
-  .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;padding:2rem 3rem;}
+  .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;padding:2rem 3rem;cursor:pointer;}
   .hero-slide.active{opacity:1;}
   .hero-slide img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.45);}
   .hero-slide.no-img{background:var(--borgona);}
@@ -147,11 +147,11 @@
 </div>
 
 <!-- HERO ROTATIVO -->
-<div class="hero" id="hero">
-  <button class="hero-arrow hero-prev" onclick="event.stopPropagation();heroNav(-1)">‹</button>
-  <button class="hero-arrow hero-next" onclick="event.stopPropagation();heroNav(1)">›</button>
+<div class="hero" id="hero" onclick="heroClick(event)">
+  <button class="hero-arrow hero-prev" onclick="heroNav(-1)">‹</button>
+  <button class="hero-arrow hero-next" onclick="heroNav(1)">›</button>
 
-  <div class="hero-slide active" id="slide-0" onclick="location.href='mis-operas.html?id=1'" style="cursor:pointer">
+  <div class="hero-slide active" id="slide-0">
     <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 001 · Teatro Real, Madrid · 22 junio 2018</div>
@@ -162,7 +162,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-1" onclick="location.href='mis-operas.html?id=2'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-1">
     <img src="carmen.png" alt="Carmen" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 002 · Teatro Real, Madrid · 23 diciembre 2025</div>
@@ -173,7 +173,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-2" onclick="location.href='mis-operas.html?id=3'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-2">
     <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 003 · Wiener Staatsoper, Viena · 27 marzo 2024</div>
@@ -184,7 +184,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-3" onclick="location.href='mis-operas.html?id=4'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-3">
     <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 004 · Volksoper Wien, Viena · 28 marzo 2024</div>
@@ -195,7 +195,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-4" onclick="location.href='mis-operas.html?id=5'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-4">
     <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 005 · Wiener Staatsoper, Viena · 1 abril 2024</div>
@@ -206,7 +206,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-5" onclick="location.href='mis-operas.html?id=6'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-5">
     <img src="medea.png" alt="Médée" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 006 · Teatro Real, Madrid · 10 junio 2024</div>
@@ -217,7 +217,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-6" onclick="location.href='mis-operas.html?id=7'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-6">
     <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 007 · Teatro Real, Madrid · 26 diciembre 2023</div>
@@ -228,7 +228,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-7" onclick="location.href='mis-operas.html?id=8'" style="cursor:pointer">
+  <div class="hero-slide" id="slide-7">
     <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 008 · Circo Massimo, Roma · 24 julio 2021</div>
@@ -703,6 +703,11 @@ document.addEventListener('click', function(e) {
 // ── HERO ROTATIVO ──
 let heroIdx = 0;
 const slides = document.querySelectorAll('.hero-slide');
+const heroIds = [1,2,3,4,5,6,7,8];
+function heroClick(e){
+  if(e.target.closest('.hero-arrow')) return;
+  location.href='mis-operas.html?id='+heroIds[heroIdx];
+}
 const dotsContainer = document.getElementById('hero-dots');
 let heroTimer;
 
