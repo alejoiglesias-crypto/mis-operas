@@ -1,1 +1,167 @@
-file:///Users/aiglesias/Downloads/index_2.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis Óperas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--blanco:#ffffff;--crema:#f8f6f2;--gris-claro:#efefed;--gris:#888;--negro:#111;--linea:#e0ddd8;--borgona:#6b1f2a;--borgona-claro:#f5eaec;--dorado:#9a7d4a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--blanco);color:var(--negro);font-family:'EB Garamond',serif;min-height:100vh;display:flex;flex-direction:column;}
+
+  header{background:var(--blanco);border-bottom:1px solid var(--negro);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--negro);text-decoration:none;}
+  .logo em{color:var(--borgona);font-style:italic;}
+  nav{display:flex;gap:2rem;align-items:center;}
+  nav a{font-family:'Montserrat',sans-serif;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);text-decoration:none;transition:color 0.2s;}
+  nav a:hover{color:var(--borgona);}
+  .nav-cta{padding:0.4rem 1.1rem;border:1px solid var(--borgona);color:var(--borgona)!important;}
+  .nav-cta:hover{background:var(--borgona);color:var(--blanco)!important;}
+
+  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--linea);flex:1;}
+  .mosaic-card{position:relative;aspect-ratio:2/3;overflow:hidden;cursor:pointer;background:var(--negro);}
+  .mosaic-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+  .mosaic-card:hover img{transform:scale(1.04);}
+  .mosaic-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 0.9rem 0.8rem;background:linear-gradient(transparent,rgba(0,0,0,0.82));}
+  .mosaic-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.28em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:0.18rem;}
+  .mosaic-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#fff;line-height:1.2;margin-bottom:0.18rem;}
+  .mosaic-sub{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;}
+
+  .strip{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--linea);border-top:2px solid var(--borgona);}
+  .strip-item{background:var(--blanco);padding:1rem 0.9rem 0.8rem;text-decoration:none;display:block;transition:background 0.15s;}
+  .strip-item:hover{background:var(--crema);}
+  .strip-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.25em;color:var(--borgona);text-transform:uppercase;margin-bottom:0.25rem;}
+  .strip-title{font-family:'Playfair Display',serif;font-size:0.85rem;font-style:italic;color:var(--negro);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .strip-teatro{font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.07em;color:var(--gris);margin-top:0.18rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+  footer{background:var(--crema);border-top:1px solid var(--linea);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;}
+  .footer-teatros{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;color:var(--gris);text-transform:uppercase;}
+  .footer-teatros span{color:var(--borgona);}
+  .footer-link{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);padding-bottom:1px;}
+
+  .mosaic-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#2a0e12;padding:1.5rem;text-align:center;}
+  .ph-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.3em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:1rem;}
+  .ph-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.2;margin-bottom:0.8rem;}
+  .ph-line{width:24px;height:1px;background:#6b1f2a;margin:0 auto 0.8rem;}
+  .ph-sub{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;}
+  @media(max-width:900px){
+    .mosaic{grid-template-columns:repeat(2,1fr);}
+    .strip{grid-template-columns:repeat(4,1fr);}
+    header{padding:0 1.5rem;}
+    footer{padding:1rem 1.5rem;flex-direction:column;gap:0.8rem;text-align:center;}
+  }
+  @media(max-width:500px){
+    .strip{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">Mis <em>Óperas</em></a>
+  <nav>
+    <a href="mis-operas.html">Colección</a>
+    <a href="mis-operas.html" class="nav-cta">Ver archivo →</a>
+  </nav>
+</header>
+
+<div class="mosaic">
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none'">
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 001</div>
+      <div class="mosaic-title">Lucia di Lammermoor</div>
+      <div class="mosaic-sub">Teatro Real · 2018</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="carmen.png" alt="Carmen" onerror="this.style.display='none'">
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 002</div>
+      <div class="mosaic-title">Carmen</div>
+      <div class="mosaic-sub">Teatro Real · 2025</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none'">
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 003</div>
+      <div class="mosaic-title">Der Rosenkavalier</div>
+      <div class="mosaic-sub">Wiener Staatsoper · 2024</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none';document.getElementById('ph-traviata').style.display='flex'">
+    <div id="ph-traviata" class="mosaic-placeholder" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;">
+      <div class="ph-num">Ficha 004</div>
+      <div class="ph-title">La Traviata</div>
+      <div class="ph-line"></div>
+      <div class="ph-sub">Volksoper Wien · 2024</div>
+    </div>
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 004</div>
+      <div class="mosaic-title">La Traviata</div>
+      <div class="mosaic-sub">Volksoper Wien · 2024</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none'">
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 005</div>
+      <div class="mosaic-title">Parsifal</div>
+      <div class="mosaic-sub">Wiener Staatsoper · 2024</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="medea.png" alt="Medea" onerror="this.style.display='none'">
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 006</div>
+      <div class="mosaic-title">Médée</div>
+      <div class="mosaic-sub">Teatro Real · 2024</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none'">
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 007</div>
+      <div class="mosaic-title">Rigoletto</div>
+      <div class="mosaic-sub">Teatro Real · 2023</div>
+    </div>
+  </div>
+  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
+    <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none';document.getElementById('ph-requiem').style.display='flex'">
+    <div id="ph-requiem" class="mosaic-placeholder" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;">
+      <div class="ph-num">Ficha 008</div>
+      <div class="ph-title">Messa da Requiem</div>
+      <div class="ph-line"></div>
+      <div class="ph-sub">Circo Massimo · Roma · 2021</div>
+    </div>
+    <div class="mosaic-overlay">
+      <div class="mosaic-num">Ficha 008</div>
+      <div class="mosaic-title">Messa da Requiem</div>
+      <div class="mosaic-sub">Circo Massimo · 2021</div>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">001</div><div class="strip-title">Lucia di Lammermoor</div><div class="strip-teatro">Teatro Real · 2018</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">002</div><div class="strip-title">Carmen</div><div class="strip-teatro">Teatro Real · 2025</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">003</div><div class="strip-title">Der Rosenkavalier</div><div class="strip-teatro">Wiener Staatsoper · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">004</div><div class="strip-title">La Traviata</div><div class="strip-teatro">Volksoper Wien · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">005</div><div class="strip-title">Parsifal</div><div class="strip-teatro">Wiener Staatsoper · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">006</div><div class="strip-title">Médée</div><div class="strip-teatro">Teatro Real · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">007</div><div class="strip-title">Rigoletto</div><div class="strip-teatro">Teatro Real · 2023</div></a>
+  <a class="strip-item" href="mis-operas.html"><div class="strip-num">008</div><div class="strip-title">Messa da Requiem</div><div class="strip-teatro">Circo Massimo · 2021</div></a>
+</div>
+
+<footer>
+  <div class="footer-teatros">
+    <span>Teatro Real</span> &nbsp;·&nbsp; Wiener Staatsoper &nbsp;·&nbsp; Volksoper Wien &nbsp;·&nbsp; <span>Circo Massimo</span>
+  </div>
+  <a class="footer-link" href="mis-operas.html">Ver archivo completo →</a>
+</footer>
+
+</body>
+</html>
