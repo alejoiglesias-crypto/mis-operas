@@ -127,7 +127,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">Mis <em>Óperas</em></div>
+  <a class="logo" href="index.html" style="text-decoration:none;color:inherit;">Mis <em>Óperas</em></a>
   <div class="header-actions">
     <span class="sync-status" id="sync-status">Conectando</span>
     <button class="btn btn-privacy" id="privacy-btn" onclick="togglePrivacy()">🔓 Privado</button>
@@ -237,14 +237,10 @@ function renderDetail(){
     <div class="detail-header">
       <div class="detail-header-inner">
         <div class="poster-wrap">
-          ${o.img_url
-            ? `<img src="${o.img_url}" alt="${o.titulo}" onerror="this.style.display='none';this.nextSibling.style.display='flex'">`
-            : ''}
-          <div class="poster-empty" style="${o.img_url?'display:none':'display:flex'}">
-            <div class="poster-empty-icon">🎭</div>
-            <div class="poster-empty-label">Añadir<br>cartel</div>
+          <div id="poster-img-wrap">
+            ${o.img_url ? `<img src="${o.img_url}" alt="${o.titulo}" style="width:110px;height:155px;object-fit:cover;border:0.5px solid var(--linea);display:block;" onerror="document.getElementById('poster-img-wrap').innerHTML='<div class=poster-empty><div class=poster-empty-icon>🎭</div><div class=poster-empty-label>Error imagen</div></div>'">` : '<div class="poster-empty"><div class="poster-empty-icon">🎭</div><div class="poster-empty-label">Añadir<br>cartel</div></div>'}
           </div>
-          <input class="poster-url-input" placeholder="URL del cartel..." value="${esc(o.img_url||'')}" onchange="actualizar('img_url',this.value);renderDetail()" oninput="marcarCambio()">
+          <input class="poster-url-input" placeholder="Pega URL aquí..." value="${esc(o.img_url||'')}" onchange="actualizarImg(this.value)" oninput="marcarCambio()">
         </div>
         <div class="detail-header-text">
           <div class="ficha-num">Ficha Nº ${o.num}${o.tipo==='concierto'?' · <span style="color:var(--borgona);font-style:normal">Concierto</span>':''}</div>
@@ -345,6 +341,7 @@ function exportarCSV(){
   const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);a.download='mis-operas.csv';a.click();
 }
 
+function actualizarImg(v){actualizar('img_url',v);setTimeout(()=>renderDetail(),100);}
 cargarDatos();
 </script>
 </body>
