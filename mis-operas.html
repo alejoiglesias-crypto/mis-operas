@@ -41,18 +41,18 @@
   .hero-slide img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.45);}
   .hero-slide.no-img{background:var(--borgona);}
   .hero-content{position:absolute;bottom:0;left:0;right:0;padding:4rem 5rem 3.5rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));}
-  .hero-num{font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.35em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:0.6rem;}
+  .hero-num{font-family:'Montserrat',sans-serif;font-size:0.68rem;letter-spacing:0.35em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:0.6rem;}
   .hero-title{font-family:'Playfair Display',serif;font-size:3.8rem;font-style:italic;font-weight:400;color:#fff;line-height:1.05;margin-bottom:0.4rem;}
-  .hero-sub{font-family:'Montserrat',sans-serif;font-size:0.65rem;letter-spacing:0.15em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:1.5rem;}
-  .hero-cita{font-family:'EB Garamond',serif;font-size:1.25rem;font-style:italic;color:rgba(255,255,255,0.88);max-width:600px;line-height:1.6;margin-bottom:0.5rem;}
-  .hero-cita-fuente{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.18em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
+  .hero-sub{font-family:'Montserrat',sans-serif;font-size:0.82rem;letter-spacing:0.15em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:1.5rem;}
+  .hero-cita{font-family:'EB Garamond',serif;font-size:1.6rem;font-style:italic;color:rgba(255,255,255,0.88);max-width:700px;line-height:1.6;margin-bottom:0.5rem;}
+  .hero-cita-fuente{font-family:'Montserrat',sans-serif;font-size:0.68rem;letter-spacing:0.18em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
   .hero-dots{position:absolute;bottom:2rem;right:3rem;display:flex;gap:0.5rem;}
   .hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:background 0.3s;}
   .hero-dot.active{background:#fff;}
-  .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;padding:0.7rem 0.9rem;cursor:pointer;transition:background 0.2s;z-index:10;}
-  .hero-arrow:hover{background:rgba(255,255,255,0.22);}
-  .hero-prev{left:1.5rem;}
-  .hero-next{right:1.5rem;}
+  .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);background:var(--borgona);border:none;color:#fff;font-size:1.4rem;padding:0.8rem 1.1rem;cursor:pointer;transition:background 0.2s;z-index:10;opacity:0.85;}
+  .hero-arrow:hover{background:#8b2735;opacity:1;}
+  .hero-prev{left:2.5rem;}
+  .hero-next{right:2.5rem;}
 
   /* GRILLA ÓPERAS */
   .section-header{padding:2rem 3rem 1rem;display:flex;align-items:baseline;justify-content:space-between;border-bottom:0.5px solid var(--linea);margin-top:1rem;}
@@ -105,6 +105,7 @@
   .cita-link{font-family:'Montserrat',sans-serif;font-size:0.48rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);}
   .cita-link:hover{opacity:0.7;}
   .cita-nota{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.08em;color:var(--borgona);margin-top:0.5rem;font-style:italic;}
+  .cita-img{width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);}
 
   /* FOOTER */
   footer{background:var(--crema);border-top:1px solid var(--linea);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;}
@@ -147,10 +148,10 @@
 
 <!-- HERO ROTATIVO -->
 <div class="hero" id="hero">
-  <button class="hero-arrow hero-prev" onclick="heroNav(-1)">‹</button>
-  <button class="hero-arrow hero-next" onclick="heroNav(1)">›</button>
+  <button class="hero-arrow hero-prev" onclick="event.stopPropagation();heroNav(-1)">‹</button>
+  <button class="hero-arrow hero-next" onclick="event.stopPropagation();heroNav(1)">›</button>
 
-  <div class="hero-slide active" id="slide-0">
+  <div class="hero-slide active" id="slide-0" onclick="location.href='mis-operas.html?id=1'" style="cursor:pointer">
     <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 001 · Teatro Real, Madrid · 22 junio 2018</div>
@@ -161,7 +162,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-1">
+  <div class="hero-slide" id="slide-1" onclick="location.href='mis-operas.html?id=2'" style="cursor:pointer">
     <img src="carmen.png" alt="Carmen" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 002 · Teatro Real, Madrid · 23 diciembre 2025</div>
@@ -172,7 +173,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-2">
+  <div class="hero-slide" id="slide-2" onclick="location.href='mis-operas.html?id=3'" style="cursor:pointer">
     <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 003 · Wiener Staatsoper, Viena · 27 marzo 2024</div>
@@ -183,7 +184,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-3">
+  <div class="hero-slide" id="slide-3" onclick="location.href='mis-operas.html?id=4'" style="cursor:pointer">
     <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 004 · Volksoper Wien, Viena · 28 marzo 2024</div>
@@ -194,7 +195,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-4">
+  <div class="hero-slide" id="slide-4" onclick="location.href='mis-operas.html?id=5'" style="cursor:pointer">
     <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 005 · Wiener Staatsoper, Viena · 1 abril 2024</div>
@@ -205,7 +206,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-5">
+  <div class="hero-slide" id="slide-5" onclick="location.href='mis-operas.html?id=6'" style="cursor:pointer">
     <img src="medea.png" alt="Médée" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 006 · Teatro Real, Madrid · 10 junio 2024</div>
@@ -216,7 +217,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-6">
+  <div class="hero-slide" id="slide-6" onclick="location.href='mis-operas.html?id=7'" style="cursor:pointer">
     <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 007 · Teatro Real, Madrid · 26 diciembre 2023</div>
@@ -227,7 +228,7 @@
     </div>
   </div>
 
-  <div class="hero-slide" id="slide-7">
+  <div class="hero-slide" id="slide-7" onclick="location.href='mis-operas.html?id=8'" style="cursor:pointer">
     <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none'">
     <div class="hero-content">
       <div class="hero-num">Ficha 008 · Circo Massimo, Roma · 24 julio 2021</div>
@@ -248,42 +249,42 @@
 </div>
 
 <div class="opera-grid">
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=1">
     <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">001</div><div class="op-ph-title">Lucia di Lammermoor</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2018</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 001</div><div class="op-title">Lucia di Lammermoor</div><div class="op-sub">Teatro Real · 2018</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=2">
     <img src="carmen.png" alt="Carmen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">002</div><div class="op-ph-title">Carmen</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2025</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 002</div><div class="op-title">Carmen</div><div class="op-sub">Teatro Real · 2025</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=3">
     <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">003</div><div class="op-ph-title">Der Rosenkavalier</div><div class="op-ph-line"></div><div class="op-ph-sub">Wiener Staatsoper · 2024</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 003</div><div class="op-title">Der Rosenkavalier</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=4">
     <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">004</div><div class="op-ph-title">La Traviata</div><div class="op-ph-line"></div><div class="op-ph-sub">Volksoper Wien · 2024</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 004</div><div class="op-title">La Traviata</div><div class="op-sub">Volksoper Wien · 2024</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=5">
     <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">005</div><div class="op-ph-title">Parsifal</div><div class="op-ph-line"></div><div class="op-ph-sub">Wiener Staatsoper · 2024</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 005</div><div class="op-title">Parsifal</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=6">
     <img src="medea.png" alt="Médée" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">006</div><div class="op-ph-title">Médée</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2024</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 006</div><div class="op-title">Médée</div><div class="op-sub">Teatro Real · 2024</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=7">
     <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">007</div><div class="op-ph-title">Rigoletto</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2023</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 007</div><div class="op-title">Rigoletto</div><div class="op-sub">Teatro Real · 2023</div></div>
   </a>
-  <a class="opera-card" href="mis-operas.html">
+  <a class="opera-card" href="mis-operas.html?id=8">
     <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">008</div><div class="op-ph-title">Messa da Requiem</div><div class="op-ph-line"></div><div class="op-ph-sub">Circo Massimo · 2021</div></div>
     <div class="opera-overlay"><div class="op-num">Ficha 008</div><div class="op-title">Messa da Requiem</div><div class="op-sub">Circo Massimo · Roma · 2021</div></div>
@@ -292,14 +293,14 @@
 
 <!-- STRIP -->
 <div class="strip">
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">001</div><div class="strip-title">Lucia di Lammermoor</div><div class="strip-teatro">Teatro Real · 2018</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">002</div><div class="strip-title">Carmen</div><div class="strip-teatro">Teatro Real · 2025</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">003</div><div class="strip-title">Der Rosenkavalier</div><div class="strip-teatro">Wiener Staatsoper · 2024</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">004</div><div class="strip-title">La Traviata</div><div class="strip-teatro">Volksoper Wien · 2024</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">005</div><div class="strip-title">Parsifal</div><div class="strip-teatro">Wiener Staatsoper · 2024</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">006</div><div class="strip-title">Médée</div><div class="strip-teatro">Teatro Real · 2024</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">007</div><div class="strip-title">Rigoletto</div><div class="strip-teatro">Teatro Real · 2023</div></a>
-  <a class="strip-item" href="mis-operas.html"><div class="strip-num">008</div><div class="strip-title">Messa da Requiem</div><div class="strip-teatro">Circo Massimo · 2021</div></a>
+  <a class="strip-item" href="mis-operas.html?id=1"><div class="strip-num">001</div><div class="strip-title">Lucia di Lammermoor</div><div class="strip-teatro">Teatro Real · 2018</div></a>
+  <a class="strip-item" href="mis-operas.html?id=2"><div class="strip-num">002</div><div class="strip-title">Carmen</div><div class="strip-teatro">Teatro Real · 2025</div></a>
+  <a class="strip-item" href="mis-operas.html?id=3"><div class="strip-num">003</div><div class="strip-title">Der Rosenkavalier</div><div class="strip-teatro">Wiener Staatsoper · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html?id=4"><div class="strip-num">004</div><div class="strip-title">La Traviata</div><div class="strip-teatro">Volksoper Wien · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html?id=5"><div class="strip-num">005</div><div class="strip-title">Parsifal</div><div class="strip-teatro">Wiener Staatsoper · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html?id=6"><div class="strip-num">006</div><div class="strip-title">Médée</div><div class="strip-teatro">Teatro Real · 2024</div></a>
+  <a class="strip-item" href="mis-operas.html?id=7"><div class="strip-num">007</div><div class="strip-title">Rigoletto</div><div class="strip-teatro">Teatro Real · 2023</div></a>
+  <a class="strip-item" href="mis-operas.html?id=8"><div class="strip-num">008</div><div class="strip-title">Messa da Requiem</div><div class="strip-teatro">Circo Massimo · 2021</div></a>
 </div>
 
 <!-- PRÓXIMAS CITAS -->
@@ -315,6 +316,7 @@
     <div class="citas-grid">
       <div class="cita-card urgente" style="grid-column:1/-1">
         <span class="cita-badge badge-urgente">Reservar ya</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Teatro_Real_de_Madrid.jpg/800px-Teatro_Real_de_Madrid.jpg" alt="Teatro Real Madrid" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">10–15 julio 2026 · Teatro Real · 19:30</div>
         <div class="cita-title">Il Trovatore</div>
         <div class="cita-compositor">Giuseppe Verdi</div>
@@ -331,6 +333,7 @@
     <div class="citas-grid">
       <div class="cita-card urgente" style="grid-column:1/-1">
         <span class="cita-badge badge-urgente">Reservar ya · Se agota</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Circus_Maximus_park_view_%285832968098%29.jpg/800px-Circus_Maximus_park_view_%285832968098%29.jpg" alt="Circo Massimo Roma" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">18 julio 2026 · Circo Massimo · 21:00</div>
         <div class="cita-title">Aida</div>
         <div class="cita-compositor">Giuseppe Verdi</div>
@@ -347,7 +350,9 @@
     <div class="zona-label"><span class="zona-flag">🇮🇹</span> Nápoles · 20 julio 2026</div>
     <div class="citas-grid">
       <div class="cita-card">
+        <img class="cita-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/San_Carlo_opera_house%2C_Naples.jpg/1280px-San_Carlo_opera_house%2C_Naples.jpg" alt="Teatro San Carlo Napoli" onerror="this.style.display='none'">
         <span class="cita-badge badge-verificar">Sin función ese día</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/San_Carlo_opera_house%2C_Naples.jpg/800px-San_Carlo_opera_house%2C_Naples.jpg" alt="Teatro San Carlo Napoli" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">20 julio 2026 · Teatro San Carlo</div>
         <div class="cita-title">Turandot</div>
         <div class="cita-compositor">Giacomo Puccini</div>
@@ -373,6 +378,7 @@
     <div class="citas-grid">
       <div class="cita-card urgente" style="grid-column:1/-1">
         <span class="cita-badge badge-urgente">Verificar programa</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Palermo_-_Teatro_Massimo_%283%29.jpg/800px-Palermo_-_Teatro_Massimo_%283%29.jpg" alt="Teatro Massimo Palermo" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">25–28 julio 2026 · Teatro Massimo</div>
         <div class="cita-title">Programa de verano 2026</div>
         <div class="cita-compositor">Por confirmar</div>
@@ -433,7 +439,9 @@
         <div class="cita-nota">⚠ Coincide con viaje a Italia</div>
       </div>
       <div class="cita-card urgente">
+        <img class="cita-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Wolf_Trap_%28national_park%29_Filene_Center_outside.jpg/1280px-Wolf_Trap_%28national_park%29_Filene_Center_outside.jpg" alt="Wolf Trap Filene Center" onerror="this.style.display='none'">
         <span class="cita-badge badge-verano">Recomendada · Filene Center</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Wolf_Trap_Filene_Center.jpg/800px-Wolf_Trap_Filene_Center.jpg" alt="Wolf Trap Filene Center" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">7 agosto 2026 · Filene Center · Al aire libre</div>
         <div class="cita-title">Tosca</div>
         <div class="cita-compositor">Giacomo Puccini</div>
@@ -450,6 +458,7 @@
     <div class="zona-label"><span class="zona-flag">🇺🇸</span> Washington National Opera · Temporada 2026-27</div>
     <div class="citas-grid">
       <div class="cita-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Kennedy_Center_2019.jpg/800px-Kennedy_Center_2019.jpg" alt="Kennedy Center Washington DC" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <span class="cita-badge badge-local">WNO · Nueva sede independiente</span>
         <div class="cita-fecha">Noviembre 2026</div>
         <div class="cita-title">Madama Butterfly</div>
@@ -476,6 +485,7 @@
     <div class="citas-grid">
       <div class="cita-card" style="grid-column:1/-1">
         <span class="cita-badge badge-local">Met Opera · Lincoln Center</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Metropolitan_Opera_House_HD.jpg/800px-Metropolitan_Opera_House_HD.jpg" alt="Metropolitan Opera New York" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">Septiembre 2026 – Junio 2027</div>
         <div class="cita-title">Temporada 2026-27 · 60º aniversario en Lincoln Center</div>
         <div class="cita-compositor">Verdi · Mazzoli · Puts · Simon · y más</div>
@@ -492,6 +502,7 @@
     <div class="citas-grid">
       <div class="cita-card">
         <span class="cita-badge badge-local">Opera Philadelphia · Sep 2026</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Academy_of_Music_Philadelphia_2014.jpg/800px-Academy_of_Music_Philadelphia_2014.jpg" alt="Academy of Music Philadelphia" style="width:100%;height:140px;object-fit:cover;display:block;margin-bottom:0.8rem;filter:brightness(0.88);" onerror="this.style.display='none'">
         <div class="cita-fecha">Septiembre 2026 · Academy of Music</div>
         <div class="cita-title">Mitridate, re di Ponto</div>
         <div class="cita-compositor">Wolfgang Amadeus Mozart (14 años)</div>
