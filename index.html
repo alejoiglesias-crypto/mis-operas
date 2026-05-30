@@ -82,32 +82,64 @@
 
   /* SECCIÓN FMR */
   .fmr-section{background:var(--blanco);border-top:1px solid var(--linea);}
-  .fmr-header{padding:4rem 3rem 2rem;border-bottom:2px solid var(--borgona);max-width:820px;}
+  .fmr-header{padding:4rem 3rem 2rem;max-width:900px;}
   .fmr-eyebrow{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--borgona);margin-bottom:0.8rem;}
   .fmr-title{font-family:'Playfair Display',serif;font-size:3rem;font-style:italic;font-weight:400;color:var(--negro);margin-bottom:1rem;line-height:1.1;}
-  .fmr-intro{font-family:'EB Garamond',serif;font-size:1.15rem;color:var(--gris);line-height:1.7;max-width:600px;}
-  .fmr-zona{padding:3rem 3rem 0;border-top:0.5px solid var(--linea);margin-top:1px;}
-  .fmr-zona:first-of-type{border-top:none;}
-  .fmr-zona-header{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:2.5rem;padding-bottom:1rem;border-bottom:0.5px solid var(--linea);}
-  .fmr-zona-roman{font-family:'Playfair Display',serif;font-size:2.5rem;font-style:italic;color:var(--borgona);line-height:1;flex-shrink:0;}
-  .fmr-zona-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--negro);}
-  .fmr-zona-sub{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gris);margin-top:0.3rem;}
-  .fmr-entrada{display:grid;grid-template-columns:200px 1fr;gap:2.5rem;margin-bottom:2.5rem;align-items:start;}
-  .fmr-entrada-img-wrap{position:relative;}
-  .fmr-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:brightness(0.92);}
-  .fmr-img-caption{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.08em;color:var(--gris);margin-top:0.4rem;line-height:1.4;}
+  .fmr-intro{font-family:'EB Garamond',serif;font-size:1.1rem;color:var(--gris);line-height:1.7;max-width:580px;}
+
+  /* Banda separadora de zona */
+  .fmr-banda{background:#1a0a0d;padding:1rem 3rem;display:flex;align-items:baseline;gap:1.5rem;margin-top:3rem;}
+  .fmr-banda-roman{font-family:'Playfair Display',serif;font-size:1.4rem;font-style:italic;color:var(--borgona);opacity:0.7;}
+  .fmr-banda-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:#fff;letter-spacing:0.05em;}
+  .fmr-banda-sub{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-left:auto;}
+
+  /* Zona interior */
+  .fmr-zona{padding:2.5rem 3rem 0;}
+
+  /* Layout dos columnas */
+  .fmr-cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:2.5rem;}
+  .fmr-cols-asym{display:grid;grid-template-columns:2fr 1fr;gap:3rem;margin-bottom:2.5rem;}
+  .fmr-cols-asym-inv{display:grid;grid-template-columns:1fr 2fr;gap:3rem;margin-bottom:2.5rem;}
+  .fmr-col-full{margin-bottom:2.5rem;}
+
+  /* Entrada */
+  .fmr-entrada{display:flex;flex-direction:column;gap:0;}
+  .fmr-entrada-img-wrap{position:relative;margin-bottom:0.8rem;}
+  .fmr-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:brightness(0.9);}
+  .fmr-img-tall{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:brightness(0.9);}
+  .fmr-img-wide{width:100%;aspect-ratio:16/7;object-fit:cover;display:block;filter:brightness(0.9);}
+  .fmr-img-caption{font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.06em;color:var(--gris);margin-top:0.35rem;line-height:1.4;}
   .fmr-entrada-body{}
-  .fmr-entrada-num{font-family:'Playfair Display',serif;font-size:0.7rem;color:var(--borgona);font-style:italic;margin-bottom:0.3rem;}
-  .fmr-entrada-kicker{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);margin-bottom:0.5rem;}
-  .fmr-entrada-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-style:italic;font-weight:400;color:var(--negro);line-height:1.15;margin-bottom:0.25rem;}
-  .fmr-entrada-autor{font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--gris);font-style:italic;margin-bottom:1rem;}
-  .fmr-entrada-texto{font-family:'EB Garamond',serif;font-size:1.05rem;line-height:1.75;color:#333;margin-bottom:1.2rem;}
-  .fmr-entrada-datos{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.08em;color:var(--gris);display:flex;flex-direction:column;gap:0.25rem;padding-top:0.8rem;border-top:0.5px solid var(--linea);}
+  .fmr-entrada-num{font-family:'Playfair Display',serif;font-size:0.65rem;color:var(--borgona);font-style:italic;margin-bottom:0.2rem;}
+  .fmr-entrada-kicker{font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gris);margin-bottom:0.45rem;}
+  .fmr-entrada-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;font-weight:400;color:var(--negro);line-height:1.15;margin-bottom:0.2rem;}
+  .fmr-entrada-autor{font-family:'EB Garamond',serif;font-size:0.92rem;color:var(--gris);font-style:italic;margin-bottom:0.8rem;}
+  .fmr-entrada-texto{font-family:'EB Garamond',serif;font-size:1.02rem;line-height:1.75;color:#2a2a2a;margin-bottom:1rem;}
+  .fmr-entrada-datos{font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.07em;color:var(--gris);display:flex;flex-direction:column;gap:0.22rem;padding-top:0.7rem;border-top:0.5px solid var(--linea);}
   .fmr-entrada-datos a{color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);display:inline;width:fit-content;}
   .fmr-urgente{color:var(--borgona);font-style:italic;}
-  .fmr-filete{height:0.5px;background:var(--linea);margin:0 0 2.5rem;}
-  .fmr-lectura{grid-template-columns:60px 1fr;gap:1.5rem;}
-  .fmr-lectura-icon{font-size:1.8rem;padding-top:0.3rem;}
+
+  /* Lectura */
+  .fmr-lectura-card{background:var(--crema);padding:1.4rem 1.6rem;border-left:2px solid var(--borgona);}
+  .fmr-lectura-kicker{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--borgona);margin-bottom:0.4rem;}
+  .fmr-lectura-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:var(--negro);margin-bottom:0.15rem;}
+  .fmr-lectura-autor{font-family:'EB Garamond',serif;font-size:0.88rem;font-style:italic;color:var(--gris);margin-bottom:0.6rem;}
+  .fmr-lectura-texto{font-family:'EB Garamond',serif;font-size:0.95rem;line-height:1.65;color:#333;}
+  .fmr-lectura-edicion{font-family:'Montserrat',sans-serif;font-size:0.48rem;letter-spacing:0.06em;color:var(--gris);margin-top:0.6rem;padding-top:0.5rem;border-top:0.5px solid var(--linea);}
+
+  /* Objeto */
+  .fmr-objeto-card{background:var(--negro);padding:1.4rem 1.6rem;color:#fff;}
+  .fmr-objeto-kicker{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--borgona);margin-bottom:0.4rem;}
+  .fmr-objeto-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:#fff;margin-bottom:0.15rem;}
+  .fmr-objeto-autor{font-family:'EB Garamond',serif;font-size:0.88rem;font-style:italic;color:rgba(255,255,255,0.55);margin-bottom:0.6rem;}
+  .fmr-objeto-texto{font-family:'EB Garamond',serif;font-size:0.95rem;line-height:1.65;color:rgba(255,255,255,0.8);}
+
+  @media(max-width:900px){
+    .fmr-cols,.fmr-cols-asym,.fmr-cols-asym-inv{grid-template-columns:1fr;}
+    .fmr-banda{padding:0.8rem 1.5rem;}
+    .fmr-zona{padding:1.5rem 1.5rem 0;}
+  }
+
 
   /* FOOTER */
   footer{background:var(--crema);border-top:1px solid var(--linea);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;}
@@ -155,7 +187,7 @@
   <div class="hero-slide active" id="slide-0">
     <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 001 · Teatro Real, Madrid · 22 junio 2018</div>
+      <div class="hero-num">Teatro Real · Madrid · junio 2018</div>
       <div class="hero-title">Lucia di Lammermoor</div>
       <div class="hero-sub">Gaetano Donizetti · Italiano</div>
       <div class="hero-cita">"Remarkable and even outstanding"</div>
@@ -166,7 +198,7 @@
   <div class="hero-slide" id="slide-1">
     <img src="carmen.png" alt="Carmen" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 002 · Teatro Real, Madrid · 23 diciembre 2025</div>
+      <div class="hero-num">Teatro Real · Madrid · diciembre 2025</div>
       <div class="hero-title">Carmen</div>
       <div class="hero-sub">Georges Bizet · Francés</div>
       <div class="hero-cita">"La Carmen de nuestra generación"</div>
@@ -177,7 +209,7 @@
   <div class="hero-slide" id="slide-2">
     <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 003 · Wiener Staatsoper, Viena · 27 marzo 2024</div>
+      <div class="hero-num">Wiener Staatsoper · Viena · marzo 2024</div>
       <div class="hero-title">Der Rosenkavalier</div>
       <div class="hero-sub">Richard Strauss · Alemán</div>
       <div class="hero-cita">"Julia Kleiter, joven en escena e ideal vocalmente como Marschallin"</div>
@@ -188,7 +220,7 @@
   <div class="hero-slide" id="slide-3">
     <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 004 · Volksoper Wien, Viena · 28 marzo 2024</div>
+      <div class="hero-num">Volksoper Wien · Viena · marzo 2024</div>
       <div class="hero-title">La Traviata</div>
       <div class="hero-sub">Giuseppe Verdi · Italiano</div>
       <div class="hero-cita">"Rebecca Nelsen, una Violetta excelente, con voz clara y fresca"</div>
@@ -199,7 +231,7 @@
   <div class="hero-slide" id="slide-4">
     <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 005 · Wiener Staatsoper, Viena · 1 abril 2024</div>
+      <div class="hero-num">Wiener Staatsoper · Viena · abril 2024</div>
       <div class="hero-title">Parsifal</div>
       <div class="hero-sub">Richard Wagner · Alemán</div>
       <div class="hero-cita">"Uncomfortably stimulating… with a searing logic"</div>
@@ -210,7 +242,7 @@
   <div class="hero-slide" id="slide-5">
     <img src="medea.png" alt="Médée" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 006 · Teatro Real, Madrid · 10 junio 2024</div>
+      <div class="hero-num">Teatro Real · Madrid · junio 2024</div>
       <div class="hero-title">Médée</div>
       <div class="hero-sub">Marc-Antoine Charpentier · Francés</div>
       <div class="hero-cita">"Todo respira elegancia, sutileza, pero también tensión dramática"</div>
@@ -221,7 +253,7 @@
   <div class="hero-slide" id="slide-6">
     <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 007 · Teatro Real, Madrid · 26 diciembre 2023</div>
+      <div class="hero-num">Teatro Real · Madrid · diciembre 2023</div>
       <div class="hero-title">Rigoletto</div>
       <div class="hero-sub">Giuseppe Verdi · Italiano</div>
       <div class="hero-cita">"Ludovic Tézier, uno de los referentes actuales para el papel del bufón trágico"</div>
@@ -232,7 +264,7 @@
   <div class="hero-slide" id="slide-7">
     <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none'">
     <div class="hero-content">
-      <div class="hero-num">Ficha 008 · Circo Massimo, Roma · 24 julio 2021</div>
+      <div class="hero-num">Circo Massimo · Roma · julio 2021</div>
       <div class="hero-title">Messa da Requiem</div>
       <div class="hero-sub">Giuseppe Verdi · Latín · Concierto al aire libre</div>
       <div class="hero-cita">"Roma vacía, el Circo Massimo, Verdi bajo las estrellas"</div>
@@ -253,42 +285,42 @@
   <a class="opera-card" href="mis-operas.html?id=1">
     <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">001</div><div class="op-ph-title">Lucia di Lammermoor</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2018</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 001</div><div class="op-title">Lucia di Lammermoor</div><div class="op-sub">Teatro Real · 2018</div></div>
+    <div class="opera-overlay"><div class="op-num">I</div><div class="op-title">Lucia di Lammermoor</div><div class="op-sub">Teatro Real · 2018</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=2">
     <img src="carmen.png" alt="Carmen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">002</div><div class="op-ph-title">Carmen</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2025</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 002</div><div class="op-title">Carmen</div><div class="op-sub">Teatro Real · 2025</div></div>
+    <div class="opera-overlay"><div class="op-num">II</div><div class="op-title">Carmen</div><div class="op-sub">Teatro Real · 2025</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=3">
     <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">003</div><div class="op-ph-title">Der Rosenkavalier</div><div class="op-ph-line"></div><div class="op-ph-sub">Wiener Staatsoper · 2024</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 003</div><div class="op-title">Der Rosenkavalier</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">III</div><div class="op-title">Der Rosenkavalier</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=4">
     <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">004</div><div class="op-ph-title">La Traviata</div><div class="op-ph-line"></div><div class="op-ph-sub">Volksoper Wien · 2024</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 004</div><div class="op-title">La Traviata</div><div class="op-sub">Volksoper Wien · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">IV</div><div class="op-title">La Traviata</div><div class="op-sub">Volksoper Wien · 2024</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=5">
     <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">005</div><div class="op-ph-title">Parsifal</div><div class="op-ph-line"></div><div class="op-ph-sub">Wiener Staatsoper · 2024</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 005</div><div class="op-title">Parsifal</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">V</div><div class="op-title">Parsifal</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=6">
     <img src="medea.png" alt="Médée" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">006</div><div class="op-ph-title">Médée</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2024</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 006</div><div class="op-title">Médée</div><div class="op-sub">Teatro Real · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">VI</div><div class="op-title">Médée</div><div class="op-sub">Teatro Real · 2024</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=7">
     <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">007</div><div class="op-ph-title">Rigoletto</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2023</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 007</div><div class="op-title">Rigoletto</div><div class="op-sub">Teatro Real · 2023</div></div>
+    <div class="opera-overlay"><div class="op-num">VII</div><div class="op-title">Rigoletto</div><div class="op-sub">Teatro Real · 2023</div></div>
   </a>
   <a class="opera-card" href="mis-operas.html?id=8">
     <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="op-placeholder" style="display:none"><div class="op-ph-num">008</div><div class="op-ph-title">Messa da Requiem</div><div class="op-ph-line"></div><div class="op-ph-sub">Circo Massimo · 2021</div></div>
-    <div class="opera-overlay"><div class="op-num">Ficha 008</div><div class="op-title">Messa da Requiem</div><div class="op-sub">Circo Massimo · Roma · 2021</div></div>
+    <div class="opera-overlay"><div class="op-num">VIII</div><div class="op-title">Messa da Requiem</div><div class="op-sub">Circo Massimo · Roma · 2021</div></div>
   </a>
 </div>
 
@@ -308,448 +340,371 @@
 <div class="fmr-section" id="proximas">
 
   <div class="fmr-header">
-    <div class="fmr-header-inner">
-      <div class="fmr-eyebrow">Selección del viajero curioso</div>
-      <div class="fmr-title">Próximas citas</div>
-      <div class="fmr-intro">Una constelación de ocasiones irrepetibles — ópera, teatro antiguo, arte y naturaleza — dispuestas según el itinerario de julio de 2026 y la temporada del área DMV.</div>
-    </div>
+    <div class="fmr-eyebrow">Selección del viajero curioso</div>
+    <div class="fmr-title">Próximas citas</div>
+    <div class="fmr-intro">Ópera, teatro antiguo, arte y naturaleza. Ordenadas por itinerario.</div>
   </div>
 
   <!-- I. MADRID -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">I</span>
+    <span class="fmr-banda-title">Madrid</span>
+    <span class="fmr-banda-sub">10–15 julio 2026 · España</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">I</span>
-      <div>
-        <div class="fmr-zona-title">Madrid</div>
-        <div class="fmr-zona-sub">10–15 julio 2026 · España</div>
-      </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Dyck_-_Samson_and_Delilah.jpg/400px-Van_Dyck_-_Samson_and_Delilah.jpg" alt="Van Dyck" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Van Dyck · Sansón y Dalila · Kunsthistorisches Museum</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">01</div>
-        <div class="fmr-entrada-kicker">Ópera · Teatro Real</div>
-        <div class="fmr-entrada-title">Il Trovatore</div>
-        <div class="fmr-entrada-autor">Giuseppe Verdi</div>
-        <div class="fmr-entrada-texto">Hay óperas que exigen el cuerpo entero del espectador. El Trovatore es una de ellas — una tormenta de pasión, sangre y fuego sin apenas lógica dramática, pero con una música que lo arrastra todo. Verdi lo sabía: "El Trovatore no tiene que gustar, tiene que aplastar". El Teatro Real lo abre en pleno julio, justo cuando Madrid se vacía y la Plaza de Oriente recupera su quietud nocturna.</div>
-        <div class="fmr-entrada-datos">
-          <span>29 jun – 16 jul 2026 · 19:30</span>
-          <span>Teatro Real · Plaza de Isabel II</span>
-          <a href="https://www.teatroreal.es" target="_blank">teatroreal.es →</a>
-          <span class="fmr-urgente">⚡ Reservar ya</span>
+    <div class="fmr-cols-asym">
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Goya_-_Saturno_devorando_a_su_hijo.jpg/400px-Goya_-_Saturno_devorando_a_su_hijo.jpg" alt="Goya Saturno" class="fmr-img-tall" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Goya · Saturno devorando a su hijo · c.1823 · Museo del Prado · La pintura negra más brutal del Romanticismo</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">01</div>
+          <div class="fmr-entrada-kicker">Ópera · Teatro Real</div>
+          <div class="fmr-entrada-title">Il Trovatore</div>
+          <div class="fmr-entrada-autor">Giuseppe Verdi</div>
+          <div class="fmr-entrada-texto">Verdi llamó a El Trovatore su ópera más difícil de reparto — necesita cuatro voces de primer nivel simultáneamente. La trama es deliberadamente oscura y enredada: Verdi no quería lógica, quería fuego. Funciona. El Teatro Real la cierra en pleno julio, con la Plaza de Oriente ya en silencio nocturno.</div>
+          <div class="fmr-entrada-datos">
+            <span>29 jun – 16 jul 2026 · 19:30 · Plaza de Isabel II</span>
+            <a href="https://www.teatroreal.es" target="_blank">teatroreal.es →</a>
+            <span class="fmr-urgente">⚡ Reservar</span>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Goya_Dog.jpg/400px-Goya_Dog.jpg" alt="Goya El perro" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Goya · El perro semihundido · Museo del Prado · c.1820</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">02</div>
-        <div class="fmr-entrada-kicker">Exposición · Museo del Prado</div>
-        <div class="fmr-entrada-title">A la manera de Italia. España y el gótico mediterráneo (1320–1420)</div>
-        <div class="fmr-entrada-autor">Museo Nacional del Prado</div>
-        <div class="fmr-entrada-texto">La gran apuesta del Prado para 2026 — no un nombre propio, sino una época entera. Los reinos de Castilla, Aragón y Portugal del siglo XIV mirando hacia Italia, aprendiendo de Giotto, del Trecento, de esa luz nueva que venía del sur. Una exposición que recuerda que la historia del arte no tiene fronteras, solo corrientes.</div>
-        <div class="fmr-entrada-datos">
-          <span>Hasta julio 2026 · Martes–domingo</span>
-          <span>Paseo del Prado · Madrid · Entrada incluida temporales</span>
-          <a href="https://www.museodelprado.es/exposiciones" target="_blank">museodelprado.es →</a>
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div class="fmr-entrada">
+          <div class="fmr-entrada-img-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Velazquez_Las_Meninas.jpg/400px-Velazquez_Las_Meninas.jpg" alt="Las Meninas" class="fmr-img" onerror="this.style.display='none'">
+            <div class="fmr-img-caption">Velázquez · Las Meninas · 1656 · Museo del Prado</div>
+          </div>
+          <div class="fmr-entrada-body">
+            <div class="fmr-entrada-num">02</div>
+            <div class="fmr-entrada-kicker">Exposición · Museo del Prado</div>
+            <div class="fmr-entrada-title">A la manera de Italia. El gótico mediterráneo (1320–1420)</div>
+            <div class="fmr-entrada-autor">Museo Nacional del Prado</div>
+            <div class="fmr-entrada-texto">La gran apuesta del Prado para 2026: una época entera, no un nombre. Los reinos hispánicos del siglo XIV mirando hacia Giotto y el Trecento. Una exposición sobre cómo viajan las ideas antes de que existan las fronteras.</div>
+            <div class="fmr-entrada-datos">
+              <span>Hasta julio 2026 · Paseo del Prado</span>
+              <a href="https://www.museodelprado.es/exposiciones" target="_blank">museodelprado.es →</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">📖</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Lectura del viaje · Madrid</div>
-        <div class="fmr-entrada-title">Las vidas de los artistas más excelentes</div>
-        <div class="fmr-entrada-autor">Giorgio Vasari · 1550</div>
-        <div class="fmr-entrada-texto">El libro que inventó la historia del arte. Vasari retrató a Leonardo, Miguel Ángel y Rafael con la mirada de alguien que los conoció. La exposición del Prado sobre el gótico mediterráneo cobra otra dimensión cuando se lee en paralelo. Llevarlo en el bolsillo.</div>
+        <div class="fmr-lectura-card">
+          <div class="fmr-lectura-kicker">📖 Lectura · Madrid</div>
+          <div class="fmr-lectura-title">Las vidas de los artistas</div>
+          <div class="fmr-lectura-autor">Giorgio Vasari · 1550</div>
+          <div class="fmr-lectura-texto">El libro que inventó la historia del arte. Vasari conoció a Miguel Ángel. La exposición del Prado sobre el gótico mediterráneo gana otra dimensión si se lee en paralelo.</div>
+          <div class="fmr-lectura-edicion">Mejor edición en español: trad. de María Teresa Méndez Baiges y Juan María Montijano · Cátedra, col. Grandes Temas, 2 vols. · La más completa en castellano, con notas críticas.</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- II. ROMA -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">II</span>
+    <span class="fmr-banda-title">Roma</span>
+    <span class="fmr-banda-sub">16–19 julio 2026 · Italia</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">II</span>
-      <div>
-        <div class="fmr-zona-title">Roma</div>
-        <div class="fmr-zona-sub">16–19 julio 2026 · Italia</div>
-      </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Circus_Maximus_park_view_%285832968098%29.jpg/400px-Circus_Maximus_park_view_%285832968098%29.jpg" alt="Circo Massimo" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Circo Massimo · Roma · Visto desde el Palatino</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">03</div>
-        <div class="fmr-entrada-kicker">Ópera al aire libre · Circo Massimo</div>
-        <div class="fmr-entrada-title">Aida</div>
-        <div class="fmr-entrada-autor">Giuseppe Verdi · Dir. Daniele Callegari / Davide Livermore</div>
-        <div class="fmr-entrada-texto">Volver al Circo Massimo. La misma arena donde en julio de 2021 sonó el Requiem de Verdi bajo las estrellas — Ficha 008. Esta vez con Aida: Egipto antiguo proyectado sobre 6.000 espectadores a cielo abierto, con el Palatino como telón de fondo y la noche romana como cómplice. Una de esas noches que no se olvidan.</div>
-        <div class="fmr-entrada-datos">
-          <span>18 julio 2026 · 21:00 · 15–170€</span>
-          <span>Via del Circo Massimo · Roma</span>
-          <a href="https://www.operaroma.it" target="_blank">operaroma.it →</a>
-          <span class="fmr-urgente">⚡ Reservar ya — se agota</span>
+    <div class="fmr-cols">
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Circus_Maximus_park_view_%285832968098%29.jpg/800px-Circus_Maximus_park_view_%285832968098%29.jpg" alt="Circo Massimo" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Circo Massimo · Roma · Vista desde el Palatino</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">03</div>
+          <div class="fmr-entrada-kicker">Ópera al aire libre · Circo Massimo</div>
+          <div class="fmr-entrada-title">Aida</div>
+          <div class="fmr-entrada-autor">Giuseppe Verdi · Dir. Daniele Callegari / Davide Livermore</div>
+          <div class="fmr-entrada-texto">Volver al Circo Massimo — en julio de 2021 sonó aquí el Requiem de Verdi bajo las estrellas. Esta vez Aida: Egipto antiguo, 6.000 espectadores a cielo abierto, el Palatino como telón de fondo. La conexión con la Ficha VIII es directa.</div>
+          <div class="fmr-entrada-datos">
+            <span>18 julio 2026 · 21:00 · 15–170€</span>
+            <a href="https://www.operaroma.it" target="_blank">operaroma.it →</a>
+            <span class="fmr-urgente">⚡ Reservar ya</span>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">🏛</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Objeto a buscar · Musei Capitolini, Roma</div>
-        <div class="fmr-entrada-title">Marco Aurelio a caballo</div>
-        <div class="fmr-entrada-autor">Bronce dorado · siglo II d.C. · Musei Capitolini</div>
-        <div class="fmr-entrada-texto">La única estatua ecuestre en bronce que sobrevivió a la Edad Media — se salvó porque se creyó que era Constantino. Miguel Ángel diseñó la plaza del Capitolio para que fuera su centro. Verla de cerca, sola en su sala, es uno de los encuentros más sobrios y poderosos del arte romano.</div>
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div class="fmr-objeto-card">
+          <div class="fmr-objeto-kicker">🏛 Objeto a buscar · Musei Capitolini</div>
+          <div class="fmr-objeto-title">Marco Aurelio a caballo</div>
+          <div class="fmr-objeto-autor">Bronce dorado · siglo II d.C.</div>
+          <div class="fmr-objeto-texto">La única estatua ecuestre en bronce que sobrevivió a la Edad Media — se salvó porque se creyó que era Constantino. Miguel Ángel diseñó la plaza del Capitolio alrededor de ella. Verla sola en su sala es uno de los encuentros más quietos del arte romano.</div>
+        </div>
+        <div class="fmr-lectura-card">
+          <div class="fmr-lectura-kicker">🎬 Cine · IMAX 70mm</div>
+          <div class="fmr-lectura-title">The Odyssey</div>
+          <div class="fmr-lectura-autor">Christopher Nolan · Estreno Italia: 16 julio 2026</div>
+          <div class="fmr-lectura-texto">Nolan rodó en Favignana — la isla que los estudiosos identifican con la tierra de los Cíclopes. Ver la película en Roma el 16 de julio, antes del estreno mundial, y llegar a Sicilia sabiendo que pisáis los mismos acantilados donde se filmó.</div>
+          <div class="fmr-lectura-edicion">The Space Cinema Moderno · Piazza della Repubblica · Roma · IMAX 70mm</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- III. NÁPOLES -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">III</span>
+    <span class="fmr-banda-title">Nápoles</span>
+    <span class="fmr-banda-sub">20 julio 2026 · Campania</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">III</span>
-      <div>
-        <div class="fmr-zona-title">Nápoles</div>
-        <div class="fmr-zona-sub">20 julio 2026 · Italia</div>
-      </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Alexander_the_Great_mosaic.jpg/400px-Alexander_the_Great_mosaic.jpg" alt="Mosaico de Alejandro" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Mosaico de Alejandro · Museo Arqueológico Nacional de Nápoles · c.100 a.C.</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">04</div>
-        <div class="fmr-entrada-kicker">Objeto a buscar · MANN, Nápoles</div>
-        <div class="fmr-entrada-title">El mosaico de Alejandro en Issos</div>
-        <div class="fmr-entrada-autor">Museo Arqueológico Nacional de Nápoles · c.100 a.C.</div>
-        <div class="fmr-entrada-texto">Encontrado en Pompeya, copia romana de un original griego perdido — Alejandro Magno en el momento de la batalla de Issos, mirando a los ojos de Darío III. La composición más cinematográfica de toda la Antigüedad. Seis metros de largo, un millón y medio de teselas. No hay pantalla que lo iguale.</div>
-        <div class="fmr-entrada-datos">
-          <span>Museo Arqueológico Nacional · Piazza Museo 19 · Nápoles</span>
-          <a href="https://mann-napoli.it" target="_blank">mann-napoli.it →</a>
+    <div class="fmr-cols-asym-inv">
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div class="fmr-objeto-card">
+          <div class="fmr-objeto-kicker">🏛 Objeto a buscar · MANN</div>
+          <div class="fmr-objeto-title">El mosaico de Alejandro en Issos</div>
+          <div class="fmr-objeto-autor">Museo Arqueológico Nacional · c.100 a.C. · Copia romana de un original griego perdido</div>
+          <div class="fmr-objeto-texto">Encontrado en Pompeya. Alejandro Magno mirando a los ojos de Darío III. Seis metros, un millón y medio de teselas. La composición más cinematográfica de la Antigüedad — y Nolan lo sabe.</div>
+          <div class="fmr-lectura-edicion" style="color:rgba(255,255,255,0.45);border-top-color:rgba(255,255,255,0.15);">Piazza Museo 19 · Nápoles · mann-napoli.it</div>
+        </div>
+        <div class="fmr-lectura-card">
+          <div class="fmr-lectura-kicker">📖 Lectura · Nápoles</div>
+          <div class="fmr-lectura-title">Viaje a Italia</div>
+          <div class="fmr-lectura-autor">Johann Wolfgang von Goethe · 1816–17</div>
+          <div class="fmr-lectura-texto">"Nápoles es un paraíso. Todos viven en una especie de ebriedad olvidadiza de sí mismos." Goethe llegó en marzo de 1787 y no quería irse. Sigue siendo la mejor introducción al sur de Italia.</div>
+          <div class="fmr-lectura-edicion">Mejor edición en español: trad. de Manuel Scholz y Rafael Cansinos Assens · Alianza Editorial, col. El Libro de Bolsillo · Clásica y asequible. También existe la de Zita Catania para Ediciones B, más reciente.</div>
         </div>
       </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">📖</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Lectura del viaje · Nápoles / Campania</div>
-        <div class="fmr-entrada-title">Nápoles y la Campania Félix</div>
-        <div class="fmr-entrada-autor">Goethe · Viaje a Italia · 1786–88</div>
-        <div class="fmr-entrada-texto">"Nápoles es un paraíso. Todos viven en una especie de ebriedad olvidadiza de sí mismos." Goethe llegó a Nápoles en marzo de 1787 y no quería irse. Su Viaje a Italia sigue siendo la mejor introducción al sur — escrito con los ojos abiertos de quien ve Italia por primera vez y no puede creer lo que ve.</div>
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Alexander_the_Great_mosaic.jpg/400px-Alexander_the_Great_mosaic.jpg" alt="Mosaico de Alejandro" class="fmr-img-tall" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Mosaico de Alejandro · MANN, Nápoles · c.100 a.C. · Detalle del rostro de Alejandro</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- IV. SICILIA / PALERMO -->
+  <!-- IV. SICILIA -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">IV</span>
+    <span class="fmr-banda-title">Sicilia · Palermo · Siracusa · Favignana</span>
+    <span class="fmr-banda-sub">22–28 julio 2026 · Italia</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">IV</span>
-      <div>
-        <div class="fmr-zona-title">Sicilia · Palermo · Siracusa</div>
-        <div class="fmr-zona-sub">22–28 julio 2026 · Italia</div>
+    <div class="fmr-cols">
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Palermo_BW_2012-10-09_11-05-42.jpg/800px-Palermo_BW_2012-10-09_11-05-42.jpg" alt="Teatro Massimo Palermo" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Teatro Massimo · Palermo · 1897 · El mayor teatro de ópera de Italia</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">04</div>
+          <div class="fmr-entrada-kicker">Ópera · Teatro Massimo · Palermo</div>
+          <div class="fmr-entrada-title">Programa de verano 2026</div>
+          <div class="fmr-entrada-autor">Sala principal y Giardini di Verdura · al aire libre desde el 19 julio</div>
+          <div class="fmr-entrada-texto">El teatro más grande de Italia tiene algo que los del norte no tienen: el calor de Sicilia entrando por los palcos. Acústica legendaria. A cinco minutos del Mercado del Capo. El programa de julio aún no está publicado — vale la pena esperar y reservar en cuanto aparezca.</div>
+          <div class="fmr-entrada-datos">
+            <span>25–28 julio 2026 · Piazza Verdi · Palermo</span>
+            <a href="https://www.teatromassimo.it/en/calendar/" target="_blank">teatromassimo.it →</a>
+            <span class="fmr-urgente">⚡ Verificar y reservar</span>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Palermo_BW_2012-10-09_11-05-42.jpg/400px-Palermo_BW_2012-10-09_11-05-42.jpg" alt="Teatro Massimo Palermo" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Teatro Massimo · Palermo · El mayor teatro de ópera de Italia</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">05</div>
-        <div class="fmr-entrada-kicker">Ópera · Teatro Massimo · Palermo</div>
-        <div class="fmr-entrada-title">Programa de verano 2026</div>
-        <div class="fmr-entrada-autor">Teatro Massimo Vittorio Emanuele · Por confirmar</div>
-        <div class="fmr-entrada-texto">El teatro más grande de Italia — tercero de Europa en su inauguración — está a cinco minutos del Mercado del Capo. Inaugurado en 1897 con acústica legendaria, tiene algo que los grandes teatros del norte no tienen: el calor de Sicilia entrando por los palcos. El programa de verano incluye funciones en sala y en los Giardini di Verdura, al aire libre desde el 19 de julio.</div>
-        <div class="fmr-entrada-datos">
-          <span>25–28 julio 2026 · Verificar programa</span>
-          <span>Piazza Verdi · Palermo</span>
-          <a href="https://www.teatromassimo.it/en/calendar/" target="_blank">teatromassimo.it →</a>
-          <span class="fmr-urgente">⚡ Verificar y reservar</span>
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Greek_Theater_at_Syracuse.jpg/800px-Greek_Theater_at_Syracuse.jpg" alt="Teatro Greco Siracusa" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Teatro Greco · Siracusa · Siglo V a.C. · Tallado en la roca del monte Temenite</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">05</div>
+          <div class="fmr-entrada-kicker">Teatro clásico · Fundazione INDA · Siracusa</div>
+          <div class="fmr-entrada-title">Representaciones en el Teatro Greco</div>
+          <div class="fmr-entrada-autor">Tragedias y comedias griegas · en griego antiguo e italiano</div>
+          <div class="fmr-entrada-texto">Esquilo estrenó aquí sus obras. El teatro fue tallado en la roca en el siglo V a.C. — capacidad para 15.000 espectadores, la bahía de Siracusa al fondo. Ver tragedia griega donde nació es difícil de igualar.</div>
+          <div class="fmr-entrada-datos">
+            <span>Posible función 28 julio · Día 13 del itinerario</span>
+            <a href="https://www.indafondazione.org" target="_blank">indafondazione.org →</a>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Greek_Theater_at_Syracuse.jpg/400px-Greek_Theater_at_Syracuse.jpg" alt="Teatro Greco Siracusa" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Teatro Greco · Siracusa · Siglo V a.C. · Tallado en la roca viva</div>
+    <div class="fmr-cols">
+      <div class="fmr-lectura-card">
+        <div class="fmr-lectura-kicker">📖 Lectura · Sicilia</div>
+        <div class="fmr-lectura-title">El Gatopardo</div>
+        <div class="fmr-lectura-autor">Giuseppe Tomasi di Lampedusa · 1958</div>
+        <div class="fmr-lectura-texto">"Si queremos que todo siga igual, es necesario que todo cambie." La novela de Sicilia — escrita por un príncipe que vio desmoronarse su mundo. Releerla cruzando el Estrecho de Mesina tiene un efecto que ninguna guía puede reproducir.</div>
+        <div class="fmr-lectura-edicion">Mejor edición en español: trad. de Fernando Gutiérrez · Austral/Espasa, o la de Ricardo Pochtar para Tusquets, col. Fábula — esta última más cuidada y con prólogo de Gioacchino Lanza Tomasi, hijo adoptivo del autor.</div>
       </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">06</div>
-        <div class="fmr-entrada-kicker">Teatro clásico · Siracusa</div>
-        <div class="fmr-entrada-title">Representaciones en el Teatro Greco</div>
-        <div class="fmr-entrada-autor">Fundazione INDA · Tragedias y comedias griegas</div>
-        <div class="fmr-entrada-texto">Esquilo estrenó aquí sus obras. El teatro fue tallado en la roca del monte Temenite en el siglo V a.C. y tiene capacidad para 15.000 espectadores. Cada verano la Fundazione INDA lo devuelve a la vida con tragedias en griego antiguo y en italiano. Ver teatro clásico donde nació — con la bahía de Siracusa al fondo — es una de las experiencias más completas que ofrece el viaje por el Mediterráneo.</div>
-        <div class="fmr-entrada-datos">
-          <span>Posible función el 28 julio · Día 13 del itinerario</span>
-          <span>Parco Archeologico · Siracusa</span>
-          <a href="https://www.indafondazione.org" target="_blank">indafondazione.org →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">📖</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Lectura del viaje · Sicilia</div>
-        <div class="fmr-entrada-title">Il Gattopardo</div>
-        <div class="fmr-entrada-autor">Giuseppe Tomasi di Lampedusa · 1958</div>
-        <div class="fmr-entrada-texto">"Si vogliamo che tutto rimanga com'è, bisogna che tutto cambi." La novela de Sicilia por excelencia — escrita por un príncipe siciliano que vio desmoronarse su mundo. Lampedusa tardó cuarenta años en escribirla y la terminó justo antes de morir. Releerla cruzando el estrecho de Mesina tiene un efecto que ninguna guía puede reproducir.</div>
-      </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">🎬</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Cine · Estreno mundial · IMAX 70mm</div>
-        <div class="fmr-entrada-title">The Odyssey</div>
-        <div class="fmr-entrada-autor">Christopher Nolan · Estreno 17 julio 2026</div>
-        <div class="fmr-entrada-texto">Nolan rodó parte de la película en Favignana — la isla frente a Trapani que los estudiosos identifican con la tierra de los Cíclopes. Vosotros pasaréis cerca. Ver la película en Roma el 16 de julio — un día antes del estreno mundial, en versión italiana — y llegar a Sicilia sabiendo que pisáis los mismos acantilados donde se filmó: eso es el viaje curioso.</div>
-        <div class="fmr-entrada-datos">
-          <span>Roma: 16 julio (estreno Italia) · IMAX 70mm</span>
-          <span>The Space Cinema Moderno · Piazza della Repubblica · Roma</span>
-          <span>Favignana: ferry desde Trapani · 30 min</span>
-        </div>
+      <div class="fmr-lectura-card">
+        <div class="fmr-lectura-kicker">📖 Lectura · La Odisea</div>
+        <div class="fmr-lectura-title">Odisea</div>
+        <div class="fmr-lectura-autor">Homero · siglo VIII a.C.</div>
+        <div class="fmr-lectura-texto">Favignana, Scilla, el Estrecho de Mesina — el itinerario siciliano es un mapa homérico. Pasaréis por los lugares donde Homero situó los episodios de Circe, Escila y Caribdis y los Cíclopes.</div>
+        <div class="fmr-lectura-edicion">Mejor edición en español: trad. de Carlos García Gual · Alianza Editorial · La más rigurosa y literaria en castellano. En verso, más cercana al original: trad. de José Manuel Pabón · Gredos, col. Biblioteca Clásica.</div>
       </div>
     </div>
   </div>
 
   <!-- V. SUR DE ITALIA -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">V</span>
+    <span class="fmr-banda-title">Sur de Italia · Matera · Cosenza</span>
+    <span class="fmr-banda-sub">29–31 julio 2026 · Basilicata · Calabria</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">V</span>
-      <div>
-        <div class="fmr-zona-title">Sur de Italia · Matera · Cosenza</div>
-        <div class="fmr-zona-sub">29–31 julio 2026 · Basilicata · Calabria</div>
-      </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Matera_-_panoramio_%2835%29.jpg/400px-Matera_-_panoramio_%2835%29.jpg" alt="Matera Sassi" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Matera · Los Sassi · Habitados desde el Paleolítico</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">07</div>
-        <div class="fmr-entrada-kicker">Música · Matera 2026</div>
-        <div class="fmr-entrada-title">Voci del Mediterraneo · Cava del Sole</div>
-        <div class="fmr-entrada-autor">Capital Mediterránea de la Cultura 2026</div>
-        <div class="fmr-entrada-texto">La Cava del Sole es una cantera excavada en la roca blanca de Matera — un anfiteatro natural de extraordinaria belleza acústica. Matera lleva habitada desde el Paleolítico; sus Sassi son el asentamiento humano continuo más antiguo del mundo. Escuchar música aquí, entre piedra y cielo, es escuchar algo que va más allá del programa.</div>
-        <div class="fmr-entrada-datos">
-          <span>30–31 julio 2026 · Verificar programa</span>
-          <span>Cava del Sole · Matera</span>
-          <a href="https://matera2026.it" target="_blank">matera2026.it →</a>
+    <div class="fmr-cols-asym">
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Matera_-_panoramio_%2835%29.jpg/800px-Matera_-_panoramio_%2835%29.jpg" alt="Matera Sassi" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Matera · Los Sassi · Habitados ininterrumpidamente desde el Paleolítico</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">06</div>
+          <div class="fmr-entrada-kicker">Música · Cava del Sole · Matera 2026</div>
+          <div class="fmr-entrada-title">Voci del Mediterraneo</div>
+          <div class="fmr-entrada-autor">Capital Mediterránea de la Cultura 2026 · con Tétouan (Marruecos)</div>
+          <div class="fmr-entrada-texto">La Cava del Sole es una cantera en la roca blanca de Matera — anfiteatro natural con acústica extraordinaria. Matera lleva habitada desde el Paleolítico; sus Sassi son el asentamiento humano continuo más antiguo del mundo. La música aquí va más allá del programa.</div>
+          <div class="fmr-entrada-datos">
+            <span>30–31 julio 2026 · Verificar programa</span>
+            <a href="https://www.matera-basilicata2019.it/en/progetti/matera-2026-mediterranean-capital-of-culture-and-dialogue/" target="_blank">matera-basilicata2019.it →</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">📖</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Lectura del viaje · Basilicata</div>
-        <div class="fmr-entrada-title">Cristo si è fermato a Eboli</div>
-        <div class="fmr-entrada-autor">Carlo Levi · 1945</div>
-        <div class="fmr-entrada-texto">"Cristo se detuvo en Eboli" — más allá, dijo la gente del sur, no llegó ni Cristo ni el Estado. Carlo Levi fue confinado por el régimen fascista en Basilicata en 1935 y escribió sobre ese mundo olvidado con una claridad y una ternura que nadie ha igualado. Leerlo antes de llegar a Matera es verla con otros ojos.</div>
+      <div class="fmr-lectura-card" style="align-self:start;">
+        <div class="fmr-lectura-kicker">📖 Lectura · Basilicata</div>
+        <div class="fmr-lectura-title">Cristo se detuvo en Éboli</div>
+        <div class="fmr-lectura-autor">Carlo Levi · 1945</div>
+        <div class="fmr-lectura-texto">Carlo Levi fue confinado por el fascismo en Basilicata en 1935 y escribió sobre ese mundo olvidado con una claridad que nadie ha igualado. Leerlo antes de llegar a Matera es verla con otros ojos.</div>
+        <div class="fmr-lectura-edicion">Mejor edición en español: trad. de Ángel Crespo · Gadir Editorial · La traducción canónica en castellano, reeditada y con prólogo de Juan Cruz. También disponible en Alianza Editorial en edición de bolsillo.</div>
       </div>
     </div>
   </div>
 
-  <!-- VI. ÁREA DMV -->
+  <!-- VI. DMV -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">VI</span>
+    <span class="fmr-banda-title">Área DMV · Washington · Virginia</span>
+    <span class="fmr-banda-sub">Temporada 2026 · Excluyendo 10 jul – 1 ago</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">VI</span>
-      <div>
-        <div class="fmr-zona-title">Área DMV · Washington · Virginia</div>
-        <div class="fmr-zona-sub">Temporada 2026 · Excluyendo 10 jul – 1 ago</div>
+    <div class="fmr-cols">
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Wolf_Trap_Filene_Center.jpg/800px-Wolf_Trap_Filene_Center.jpg" alt="Wolf Trap" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Wolf Trap Filene Center · Vienna, Virginia · Ópera al aire libre en el bosque</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">07</div>
+          <div class="fmr-entrada-kicker">Ópera · Wolf Trap · Vienna, VA</div>
+          <div class="fmr-entrada-title">La Cenerentola · Rossini</div>
+          <div class="fmr-entrada-autor">Wolf Trap Opera · Dir. Louis Lohraseb · junio 2026</div>
+          <div class="fmr-entrada-texto">The Barns at Wolf Trap es uno de los mejores lugares de la costa este para escuchar ópera de cámara — íntimo, con artistas emergentes seleccionados entre los mejores jóvenes cantantes del país. La Cenerentola rossiniana en junio, antes del viaje.</div>
+          <div class="fmr-entrada-datos">
+            <span>18, 21, 25, 27 junio 2026 · The Barns · 1551 Trap Rd · Vienna, VA</span>
+            <a href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Wolf_Trap_Filene_Center.jpg/400px-Wolf_Trap_Filene_Center.jpg" alt="Wolf Trap" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Wolf Trap Filene Center · Vienna, Virginia · Ópera al aire libre</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">08</div>
-        <div class="fmr-entrada-kicker">Ópera · Wolf Trap · Vienna, VA</div>
-        <div class="fmr-entrada-title">La Cenerentola · Rossini</div>
-        <div class="fmr-entrada-autor">Wolf Trap Opera · Dir. Louis Lohraseb</div>
-        <div class="fmr-entrada-texto">The Barns at Wolf Trap — el espacio íntimo del festival — es uno de los mejores lugares de la costa este para escuchar ópera de cámara. Artistas emergentes del programa Wolf Trap Opera, seleccionados entre los mejores jóvenes cantantes del país. La Cenerentola rossiniana en junio, antes del viaje a Italia.</div>
-        <div class="fmr-entrada-datos">
-          <span>18, 21, 25, 27 junio 2026 · The Barns at Wolf Trap</span>
-          <span>1551 Trap Rd · Vienna, VA</span>
-          <a href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/GF_Tosca.jpg/400px-GF_Tosca.jpg" alt="Tosca ilustración" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Tosca · Grabado del estreno · Teatro Costanzi, Roma · 1900</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">08</div>
+          <div class="fmr-entrada-kicker">Ópera · Wolf Trap Filene Center · Agosto</div>
+          <div class="fmr-entrada-title">Tosca</div>
+          <div class="fmr-entrada-autor">Giacomo Puccini · Wolf Trap Opera · Al aire libre</div>
+          <div class="fmr-entrada-texto">Primera semana de regreso de Italia — Puccini bajo el cielo de Virginia. Tosca transcurre en la Roma de 1800, en los mismos tejados que acabáis de pisar. Ver esta ópera después de Roma tiene la lógica de un círculo que se cierra.</div>
+          <div class="fmr-entrada-datos">
+            <span>7 agosto 2026 · Filene Center · 7.000 localidades</span>
+            <a href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
+            <span class="fmr-urgente">★ Primera semana de regreso — ideal</span>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Tosca_-_E_lucevan_le_stelle.jpg/400px-Tosca_-_E_lucevan_le_stelle.jpg" alt="Tosca" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Tosca · Acto III · "E lucevan le stelle" · Ilustración histórica</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">09</div>
-        <div class="fmr-entrada-kicker">Ópera · Wolf Trap Filene Center · Al aire libre</div>
-        <div class="fmr-entrada-title">Tosca</div>
-        <div class="fmr-entrada-autor">Giacomo Puccini · Wolf Trap Opera</div>
-        <div class="fmr-entrada-texto">La primera semana de regreso de Italia — agosto en Virginia, el calor todavía en el aire — y Tosca bajo el cielo abierto del Filene Center. Puccini ambientó su ópera en la Roma de 1800, en los mismos tejados que acabáis de pisar. Ver Tosca después de Roma tiene la lógica de un círculo que se cierra.</div>
-        <div class="fmr-entrada-datos">
-          <span>7 agosto 2026 · Filene Center · 7.000 localidades</span>
-          <span>Wolf Trap National Park · Vienna, VA</span>
-          <a href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
-          <span class="fmr-urgente">★ Primera semana de regreso — ideal</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">🌊</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Naturaleza · Chesapeake Bay · Edgewater, MD</div>
-        <div class="fmr-entrada-title">Beverly Triton Nature Park</div>
-        <div class="fmr-entrada-autor">Mayo – Septiembre 2026 · Tu propio equipo</div>
-        <div class="fmr-entrada-texto">Una milla de orilla natural en la Chesapeake Bay — entre el South River y el Rhode River — con viento suficiente para el windsurf y silencio suficiente para olvidar que Washington está a cuarenta y cinco minutos. Los fines de semana de verano requieren reserva previa de pase (jueves anterior). Sin socorristas. Sin ruido.</div>
-        <div class="fmr-entrada-datos">
-          <span>1202 Triton Beach Rd · Edgewater, MD 21037</span>
-          <a href="https://www.aacounty.org/recreation-parks/parks/beverly-triton-nature-park" target="_blank">aacounty.org →</a>
-          <span>Reserva fin de semana: yourpassnow.com</span>
-        </div>
+    <div class="fmr-col-full">
+      <div class="fmr-lectura-card">
+        <div class="fmr-lectura-kicker">🌊 Naturaleza · Edgewater, MD</div>
+        <div class="fmr-lectura-title">Beverly Triton Nature Park</div>
+        <div class="fmr-lectura-autor">Mayo – Septiembre 2026 · Chesapeake Bay · Tu propio equipo</div>
+        <div class="fmr-lectura-texto">Una milla de orilla natural entre el South River y el Rhode River — viento suficiente para el windsurf, silencio suficiente para olvidar que Washington está a cuarenta y cinco minutos. Fines de semana requieren reserva de pase (jueves anterior). Sin socorristas. Sin ruido.</div>
+        <div class="fmr-lectura-edicion">1202 Triton Beach Rd · Edgewater, MD 21037 · <a href="https://www.aacounty.org/recreation-parks/parks/beverly-triton-nature-park" target="_blank" style="color:var(--borgona);">aacounty.org →</a> · Reserva fines de semana: yourpassnow.com</div>
       </div>
     </div>
   </div>
 
   <!-- VII. NY / PHILLY / WNO -->
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">VII</span>
+    <span class="fmr-banda-title">Nueva York · Philadelphia · Washington</span>
+    <span class="fmr-banda-sub">Temporada 2026–27</span>
+  </div>
   <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">VII</span>
-      <div>
-        <div class="fmr-zona-title">Nueva York · Philadelphia · Washington</div>
-        <div class="fmr-zona-sub">Temporada 2026–27</div>
-      </div>
-    </div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Metropolitan_Opera_House_HD.jpg/400px-Metropolitan_Opera_House_HD.jpg" alt="Metropolitan Opera" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Metropolitan Opera · Lincoln Center · Nueva York · 60º aniversario 2026</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">10</div>
-        <div class="fmr-entrada-kicker">Metropolitan Opera · Nueva York · 2026–27</div>
-        <div class="fmr-entrada-title">Temporada Diamond Jubilee · 60 años en Lincoln Center</div>
-        <div class="fmr-entrada-autor">Verdi · Mazzoli · Puts · Simon</div>
-        <div class="fmr-entrada-texto">El Met abre su temporada de aniversario el 22 de septiembre con Macbeth de Verdi. Cinco nuevas producciones y dos estrenos mundiales — entre ellos Lincoln in the Bardo de Missy Mazzoli. La gala del 60 aniversario es el 25 de mayo de 2027. Una temporada para ir al menos una vez.</div>
-        <div class="fmr-entrada-datos">
-          <span>Sep 2026 – Jun 2027 · 25–480$</span>
-          <span>30 Lincoln Center Plaza · New York</span>
-          <a href="https://www.metopera.org/season/2026-27-season/" target="_blank">metopera.org →</a>
+    <div class="fmr-cols">
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Metropolitan_Opera_House_HD.jpg/800px-Metropolitan_Opera_House_HD.jpg" alt="Metropolitan Opera" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Metropolitan Opera · Lincoln Center · Nueva York · 60º aniversario en el edificio</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">09</div>
+          <div class="fmr-entrada-kicker">Metropolitan Opera · Nueva York · 2026–27</div>
+          <div class="fmr-entrada-title">Temporada Diamond Jubilee</div>
+          <div class="fmr-entrada-autor">60 años en Lincoln Center · Verdi · Mazzoli · Puts · Simon</div>
+          <div class="fmr-entrada-texto">El Met abre el 22 de septiembre con Macbeth de Verdi. Cinco nuevas producciones, dos estrenos mundiales — entre ellos Lincoln in the Bardo de Missy Mazzoli. Gala del 60 aniversario el 25 de mayo de 2027. Una temporada para ir al menos una vez.</div>
+          <div class="fmr-entrada-datos">
+            <span>Sep 2026 – Jun 2027 · 25–480$ · Lincoln Center</span>
+            <a href="https://www.metopera.org/season/2026-27-season/" target="_blank">metopera.org →</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Academy_of_Music_Philadelphia_2014.jpg/400px-Academy_of_Music_Philadelphia_2014.jpg" alt="Academy of Music Philadelphia" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Academy of Music · Philadelphia · 1857 · El teatro de ópera más antiguo de EEUU en uso continuo</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">11</div>
-        <div class="fmr-entrada-kicker">Opera Philadelphia · Sep 2026</div>
-        <div class="fmr-entrada-title">Mitridate, re di Ponto</div>
-        <div class="fmr-entrada-autor">Wolfgang Amadeus Mozart · 14 años</div>
-        <div class="fmr-entrada-texto">Mozart tenía catorce años cuando compuso esta ópera. Lawrence Brownlee, Anthony Roth Costanzo y Lauren Snouffer en el reparto — tres de los cantantes más interesantes del momento. Opera Philadelphia es la compañía más inventiva de EEUU, y sus entradas desde 11$ con Pick Your Price la hacen accesible como pocas. Philadelphia está a dos horas y media desde DC.</div>
-        <div class="fmr-entrada-datos">
-          <span>Septiembre 2026 · Academy of Music · Broad St</span>
-          <a href="https://www.operaphila.org" target="_blank">operaphila.org →</a>
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Academy_of_Music_Philadelphia_2014.jpg/800px-Academy_of_Music_Philadelphia_2014.jpg" alt="Academy of Music" class="fmr-img" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Academy of Music · Philadelphia · 1857 · El teatro de ópera en uso continuo más antiguo de EEUU</div>
+        </div>
+        <div class="fmr-entrada-body">
+          <div class="fmr-entrada-num">10</div>
+          <div class="fmr-entrada-kicker">Opera Philadelphia · Septiembre 2026</div>
+          <div class="fmr-entrada-title">Mitridate, re di Ponto</div>
+          <div class="fmr-entrada-autor">Wolfgang Amadeus Mozart · compuesta a los 14 años</div>
+          <div class="fmr-entrada-texto">Mozart tenía catorce años. Lawrence Brownlee, Anthony Roth Costanzo y Lauren Snouffer en el reparto. Opera Philadelphia es la compañía más inventiva de EEUU — entradas desde 11$ con Pick Your Price. Philadelphia está a dos horas y media desde DC.</div>
+          <div class="fmr-entrada-datos">
+            <span>Septiembre 2026 · Academy of Music · Broad St</span>
+            <a href="https://www.operaphila.org" target="_blank">operaphila.org →</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- VIII. ARTE Y PUBLICACIONES -->
-  <div class="fmr-zona">
-    <div class="fmr-zona-header">
-      <span class="fmr-zona-roman">VIII</span>
-      <div>
-        <div class="fmr-zona-title">Arte · Publicaciones · Otras citas</div>
-        <div class="fmr-zona-sub">Todo el año</div>
+  <div class="fmr-banda">
+    <span class="fmr-banda-roman">VIII</span>
+    <span class="fmr-banda-title">Arte · Publicaciones</span>
+    <span class="fmr-banda-sub">Todo el año</span>
+  </div>
+  <div class="fmr-zona" style="padding-bottom:3rem;">
+    <div class="fmr-cols-asym">
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <div class="fmr-lectura-card">
+          <div class="fmr-lectura-kicker">🖤 Publicación · 21 junio 2026</div>
+          <div class="fmr-lectura-title">FMR Magazine · Número 18</div>
+          <div class="fmr-lectura-autor">Solsticio de verano · Laura Casalis Ricci · Bodoni · papel de lujo</div>
+          <div class="fmr-lectura-texto">Cuatro veces al año, siempre en los solsticios y equinoccios. El número de verano llega el 21 de junio, antes del viaje. El de otoño el 21 de septiembre, al regreso — el momento exacto para releer el viaje desde la única revista que entiende lo que acabas de ver.</div>
+          <div class="fmr-lectura-edicion"><a href="https://www.fmrmagazine.com" target="_blank" style="color:var(--borgona);">fmrmagazine.com →</a> · Suscripción incluye entrada al Labirinto della Masone de Fontanellato (Parma)</div>
+        </div>
+        <div class="fmr-lectura-card">
+          <div class="fmr-lectura-kicker">🎨 Exposición · Prado · Dic 2026</div>
+          <div class="fmr-lectura-title">Mariana de Austria</div>
+          <div class="fmr-lectura-autor">Museo Nacional del Prado · 1 dic 2026 – 28 mar 2027</div>
+          <div class="fmr-lectura-texto">Primera exposición del Prado dedicada a una promotora artística. La reina Mariana de Austria como coleccionista — Velázquez, Rubens, pintores de corte. Si hay regreso a Madrid en invierno, es la exposición del año en España.</div>
+          <div class="fmr-lectura-edicion">Salas A-B Edificio Jerónimos · <a href="https://www.museodelprado.es/exposiciones" target="_blank" style="color:var(--borgona);">museodelprado.es →</a></div>
+        </div>
       </div>
-    </div>
-
-    <div class="fmr-entrada fmr-lectura">
-      <div class="fmr-lectura-icon">🖤</div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-kicker">Publicación · Solsticio de verano · 21 junio 2026</div>
-        <div class="fmr-entrada-title">FMR Magazine · Número 18</div>
-        <div class="fmr-entrada-autor">Franco Maria Ricci · Ed. Laura Casalis Ricci · Solsticios y equinoccios</div>
-        <div class="fmr-entrada-texto">Cuatro veces al año, siempre en los solsticios y equinoccios, FMR aparece — en papel de lujo, tipografía Bodoni, fondo negro. El número de verano llega el 21 de junio, antes del viaje. El de otoño el 21 de septiembre, al regreso — el momento perfecto para releer el viaje desde la revista que mejor entiende lo que acabas de ver. La suscripción incluye entrada gratuita al Labirinto della Masone de Fontanellato.</div>
-        <div class="fmr-entrada-datos">
-          <span>21 junio 2026 · Número de verano</span>
-          <a href="https://www.fmrmagazine.com" target="_blank">fmrmagazine.com →</a>
+      <div class="fmr-entrada">
+        <div class="fmr-entrada-img-wrap">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Labyrinth_of_FMR_Fontanellato.jpg/400px-Labyrinth_of_FMR_Fontanellato.jpg" alt="Labirinto della Masone" class="fmr-img-tall" onerror="this.style.display='none'">
+          <div class="fmr-img-caption">Labirinto della Masone · Fontanellato, Parma · Franco Maria Ricci · 7 hectáreas de bambú · El laberinto más grande del mundo</div>
         </div>
       </div>
     </div>
-
-    <div class="fmr-filete"></div>
-
-    <div class="fmr-entrada">
-      <div class="fmr-entrada-img-wrap">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/400px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" alt="Velázquez Las Meninas" class="fmr-img" onerror="this.style.display='none'">
-        <div class="fmr-img-caption">Detalle · Las Meninas · Velázquez · 1656 · Museo del Prado</div>
-      </div>
-      <div class="fmr-entrada-body">
-        <div class="fmr-entrada-num">12</div>
-        <div class="fmr-entrada-kicker">Exposición · Museo del Prado · Dic 2026</div>
-        <div class="fmr-entrada-title">Mariana de Austria</div>
-        <div class="fmr-entrada-autor">Primera exposición del Prado dedicada a una promotora artística</div>
-        <div class="fmr-entrada-texto">Mariana de Austria fue reina, regente y una de las mayores coleccionistas de arte de la historia española. El Prado le dedica la primera exposición monográfica — a través de Velázquez, Rubens y los pintores de la corte. Si hay regreso a Madrid en invierno, es la exposición del año en España.</div>
-        <div class="fmr-entrada-datos">
-          <span>1 diciembre 2026 – 28 marzo 2027</span>
-          <span>Salas A-B Edificio Jerónimos · Madrid</span>
-          <a href="https://www.museodelprado.es/exposiciones" target="_blank">museodelprado.es →</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
 </div>
