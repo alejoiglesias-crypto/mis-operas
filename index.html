@@ -8,9 +8,10 @@
 <style>
   :root{--blanco:#ffffff;--crema:#f8f6f2;--gris-claro:#efefed;--gris:#888;--negro:#111;--linea:#e0ddd8;--borgona:#6b1f2a;--borgona-claro:#f5eaec;--dorado:#9a7d4a;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--blanco);color:var(--negro);font-family:'EB Garamond',serif;min-height:100vh;display:flex;flex-direction:column;}
+  body{background:var(--blanco);color:var(--negro);font-family:'EB Garamond',serif;min-height:100vh;}
 
-  header{background:var(--blanco);border-bottom:1px solid var(--negro);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
+  /* HEADER */
+  header{background:var(--blanco);border-bottom:1px solid var(--negro);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;}
   .logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--negro);text-decoration:none;}
   .logo em{color:var(--borgona);font-style:italic;}
   nav{display:flex;gap:2rem;align-items:center;}
@@ -19,40 +20,109 @@
   .nav-cta{padding:0.4rem 1.1rem;border:1px solid var(--borgona);color:var(--borgona)!important;}
   .nav-cta:hover{background:var(--borgona);color:var(--blanco)!important;}
 
-  .mosaic{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--linea);flex:1;}
-  .mosaic-card{position:relative;aspect-ratio:2/3;overflow:hidden;cursor:pointer;background:var(--negro);}
-  .mosaic-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
-  .mosaic-card:hover img{transform:scale(1.04);}
-  .mosaic-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.2rem 0.9rem 0.8rem;background:linear-gradient(transparent,rgba(0,0,0,0.82));}
-  .mosaic-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.28em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:0.18rem;}
-  .mosaic-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#fff;line-height:1.2;margin-bottom:0.18rem;}
-  .mosaic-sub{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;}
+  /* BUSCADOR */
+  .search-bar{background:var(--crema);border-bottom:1px solid var(--linea);padding:0.8rem 3rem;display:flex;align-items:center;gap:1rem;}
+  .search-input{flex:1;max-width:500px;font-family:'EB Garamond',serif;font-size:1rem;background:var(--blanco);border:0.5px solid var(--linea);padding:0.5rem 1rem;outline:none;color:var(--negro);}
+  .search-input:focus{border-color:var(--borgona);}
+  .search-input::placeholder{color:var(--gris);font-style:italic;}
+  .search-label{font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);}
+  #search-results{display:none;position:absolute;top:120px;left:3rem;right:3rem;background:var(--blanco);border:0.5px solid var(--linea);z-index:150;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+  .search-result-item{padding:0.8rem 1.2rem;border-bottom:0.5px solid var(--linea);cursor:pointer;transition:background 0.15s;text-decoration:none;display:block;}
+  .search-result-item:hover{background:var(--crema);}
+  .sri-num{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.22em;color:var(--borgona);text-transform:uppercase;margin-bottom:0.15rem;}
+  .sri-title{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:var(--negro);}
+  .sri-sub{font-family:'Montserrat',sans-serif;font-size:0.5rem;color:var(--gris);margin-top:0.1rem;}
+  .search-empty{padding:1.2rem;font-family:'Montserrat',sans-serif;font-size:0.58rem;color:var(--gris);text-align:center;font-style:italic;}
 
-  .strip{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--linea);border-top:2px solid var(--borgona);}
+  /* HERO ROTATIVO */
+  .hero{position:relative;height:85vh;overflow:hidden;background:var(--blanco);padding:2rem 3rem;}
+  .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;padding:2rem 3rem;}
+  .hero-slide.active{opacity:1;}
+  .hero-slide img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.45);}
+  .hero-slide.no-img{background:var(--borgona);}
+  .hero-content{position:absolute;bottom:0;left:0;right:0;padding:4rem 5rem 3.5rem;background:linear-gradient(transparent,rgba(0,0,0,0.7));}
+  .hero-num{font-family:'Montserrat',sans-serif;font-size:0.68rem;letter-spacing:0.35em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:0.6rem;}
+  .hero-title{font-family:'Playfair Display',serif;font-size:3.8rem;font-style:italic;font-weight:400;color:#fff;line-height:1.05;margin-bottom:0.4rem;}
+  .hero-sub{font-family:'Montserrat',sans-serif;font-size:0.82rem;letter-spacing:0.15em;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:1.5rem;}
+  .hero-cita{font-family:'EB Garamond',serif;font-size:1.6rem;font-style:italic;color:rgba(255,255,255,0.88);max-width:700px;line-height:1.6;margin-bottom:0.5rem;}
+  .hero-cita-fuente{font-family:'Montserrat',sans-serif;font-size:0.68rem;letter-spacing:0.18em;color:rgba(255,255,255,0.45);text-transform:uppercase;}
+  .hero-dots{position:absolute;bottom:2rem;right:3rem;display:flex;gap:0.5rem;}
+  .hero-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:background 0.3s;}
+  .hero-dot.active{background:#fff;}
+  .hero-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);color:#fff;font-size:1.2rem;padding:0.7rem 0.9rem;cursor:pointer;transition:background 0.2s;z-index:10;}
+  .hero-arrow:hover{background:rgba(255,255,255,0.22);}
+  .hero-prev{left:1.5rem;}
+  .hero-next{right:1.5rem;}
+
+  /* GRILLA ÓPERAS */
+  .section-header{padding:2rem 3rem 1rem;display:flex;align-items:baseline;justify-content:space-between;border-bottom:0.5px solid var(--linea);margin-top:1rem;}
+  .section-title-big{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:var(--negro);}
+  .section-link{font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);}
+  .opera-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--blanco);padding:2rem 3rem;}
+  .opera-card{position:relative;overflow:hidden;cursor:pointer;background:var(--negro);text-decoration:none;display:block;margin:1rem;aspect-ratio:2/3;}
+  .opera-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+  .opera-card:hover img{transform:scale(1.04);}
+  .opera-overlay{position:absolute;bottom:0;left:0;right:0;padding:1rem 0.9rem 0.7rem;background:linear-gradient(transparent,rgba(0,0,0,0.82));}
+  .op-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.28em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:0.18rem;}
+  .op-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-style:italic;color:#fff;line-height:1.2;margin-bottom:0.18rem;}
+  .op-sub{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.1em;color:rgba(255,255,255,0.6);text-transform:uppercase;}
+  .op-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#1a0a0d;padding:1.5rem;text-align:center;}
+  .op-ph-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.3em;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:1rem;}
+  .op-ph-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:rgba(255,255,255,0.8);line-height:1.2;margin-bottom:0.7rem;}
+  .op-ph-line{width:20px;height:1px;background:var(--borgona);margin:0 auto 0.7rem;}
+  .op-ph-sub{font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.12em;color:rgba(255,255,255,0.35);text-transform:uppercase;}
+
+  /* STRIP EDITORIAL */
+  .strip{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--linea);border-top:2px solid var(--borgona);margin:0 3rem;}
   .strip-item{background:var(--blanco);padding:1rem 0.9rem 0.8rem;text-decoration:none;display:block;transition:background 0.15s;}
   .strip-item:hover{background:var(--crema);}
   .strip-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.25em;color:var(--borgona);text-transform:uppercase;margin-bottom:0.25rem;}
   .strip-title{font-family:'Playfair Display',serif;font-size:0.85rem;font-style:italic;color:var(--negro);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .strip-teatro{font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.07em;color:var(--gris);margin-top:0.18rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
+  /* PRÓXIMAS CITAS */
+  .proximas{padding:3rem;}
+  .proximas-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:2rem;padding-bottom:0.8rem;border-bottom:2px solid var(--borgona);}
+  .proximas-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;color:var(--negro);}
+  .proximas-sub{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);}
+  .proximas-zona{margin-bottom:2.5rem;}
+  .zona-label{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--borgona);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:0.5px solid var(--linea);display:flex;align-items:center;gap:0.8rem;}
+  .zona-flag{font-size:1rem;}
+  .citas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:0.5px solid var(--linea);}
+  .cita-card{background:var(--blanco);padding:1.2rem 1.1rem;position:relative;}
+  .cita-card.urgente{background:var(--borgona-claro);}
+  .cita-card.pasada{opacity:0.5;}
+  .cita-badge{font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.15rem 0.5rem;border-radius:2px;display:inline-block;margin-bottom:0.5rem;}
+  .badge-urgente{background:var(--borgona);color:#fff;}
+  .badge-local{background:var(--negro);color:#fff;}
+  .badge-verificar{background:var(--linea);color:var(--gris);}
+  .badge-verano{background:#e8f0e8;color:#3a6a3a;}
+  .cita-fecha{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.1em;color:var(--borgona);margin-bottom:0.3rem;}
+  .cita-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--negro);margin-bottom:0.2rem;line-height:1.2;}
+  .cita-compositor{font-family:'EB Garamond',serif;font-size:0.85rem;color:var(--gris);font-style:italic;margin-bottom:0.5rem;}
+  .cita-lugar{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.08em;color:var(--gris-oscuro);margin-bottom:0.3rem;}
+  .cita-detalle{font-family:'EB Garamond',serif;font-size:0.88rem;color:var(--gris);line-height:1.5;margin-bottom:0.6rem;}
+  .cita-link{font-family:'Montserrat',sans-serif;font-size:0.48rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);}
+  .cita-link:hover{opacity:0.7;}
+  .cita-nota{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.08em;color:var(--borgona);margin-top:0.5rem;font-style:italic;}
+
+  /* FOOTER */
   footer{background:var(--crema);border-top:1px solid var(--linea);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;}
   .footer-teatros{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.15em;color:var(--gris);text-transform:uppercase;}
   .footer-teatros span{color:var(--borgona);}
-  .footer-link{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);padding-bottom:1px;}
+  .footer-link{font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--borgona);text-decoration:none;border-bottom:0.5px solid var(--borgona);}
 
-  .mosaic-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#2a0e12;padding:1.5rem;text-align:center;}
-  .ph-num{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.3em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:1rem;}
-  .ph-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.2;margin-bottom:0.8rem;}
-  .ph-line{width:24px;height:1px;background:#6b1f2a;margin:0 auto 0.8rem;}
-  .ph-sub{font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.15em;color:rgba(255,255,255,0.4);text-transform:uppercase;}
   @media(max-width:900px){
-    .mosaic{grid-template-columns:repeat(2,1fr);}
+    .opera-grid{grid-template-columns:repeat(2,1fr);}
     .strip{grid-template-columns:repeat(4,1fr);}
+    .citas-grid{grid-template-columns:1fr;}
     header{padding:0 1.5rem;}
-    footer{padding:1rem 1.5rem;flex-direction:column;gap:0.8rem;text-align:center;}
-  }
-  @media(max-width:500px){
-    .strip{grid-template-columns:repeat(2,1fr);}
+    .hero-content{padding:2rem 2rem 2rem;}
+    .hero-title{font-size:2.4rem;}
+    .proximas{padding:1.5rem;}
+    footer{padding:1rem 1.5rem;flex-direction:column;gap:0.8rem;}
+    .search-bar{padding:0.8rem 1.5rem;}
+    #search-results{left:1.5rem;right:1.5rem;top:110px;}
   }
 </style>
 </head>
@@ -61,90 +131,166 @@
 <header>
   <a class="logo" href="index.html">Mis <em>Óperas</em></a>
   <nav>
+    <a href="#proximas">Próximas citas</a>
+    <a href="#otras-citas">Otras citas</a>
     <a href="mis-operas.html">Colección</a>
     <a href="mis-operas.html" class="nav-cta">Ver archivo →</a>
   </nav>
 </header>
 
-<div class="mosaic">
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none'">
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 001</div>
-      <div class="mosaic-title">Lucia di Lammermoor</div>
-      <div class="mosaic-sub">Teatro Real · 2018</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="carmen.png" alt="Carmen" onerror="this.style.display='none'">
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 002</div>
-      <div class="mosaic-title">Carmen</div>
-      <div class="mosaic-sub">Teatro Real · 2025</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none'">
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 003</div>
-      <div class="mosaic-title">Der Rosenkavalier</div>
-      <div class="mosaic-sub">Wiener Staatsoper · 2024</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none';document.getElementById('ph-traviata').style.display='flex'">
-    <div id="ph-traviata" class="mosaic-placeholder" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;">
-      <div class="ph-num">Ficha 004</div>
-      <div class="ph-title">La Traviata</div>
-      <div class="ph-line"></div>
-      <div class="ph-sub">Volksoper Wien · 2024</div>
-    </div>
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 004</div>
-      <div class="mosaic-title">La Traviata</div>
-      <div class="mosaic-sub">Volksoper Wien · 2024</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none'">
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 005</div>
-      <div class="mosaic-title">Parsifal</div>
-      <div class="mosaic-sub">Wiener Staatsoper · 2024</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="medea.png" alt="Medea" onerror="this.style.display='none'">
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 006</div>
-      <div class="mosaic-title">Médée</div>
-      <div class="mosaic-sub">Teatro Real · 2024</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none'">
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 007</div>
-      <div class="mosaic-title">Rigoletto</div>
-      <div class="mosaic-sub">Teatro Real · 2023</div>
-    </div>
-  </div>
-  <div class="mosaic-card" onclick="location.href='mis-operas.html'">
-    <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none';document.getElementById('ph-requiem').style.display='flex'">
-    <div id="ph-requiem" class="mosaic-placeholder" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;">
-      <div class="ph-num">Ficha 008</div>
-      <div class="ph-title">Messa da Requiem</div>
-      <div class="ph-line"></div>
-      <div class="ph-sub">Circo Massimo · Roma · 2021</div>
-    </div>
-    <div class="mosaic-overlay">
-      <div class="mosaic-num">Ficha 008</div>
-      <div class="mosaic-title">Messa da Requiem</div>
-      <div class="mosaic-sub">Circo Massimo · 2021</div>
-    </div>
-  </div>
+<!-- BUSCADOR -->
+<div class="search-bar" style="position:relative;">
+  <span class="search-label">Buscar</span>
+  <input class="search-input" id="search-input" type="text" placeholder="Título, compositor, cantante, teatro...">
+  <div id="search-results"></div>
 </div>
 
+<!-- HERO ROTATIVO -->
+<div class="hero" id="hero">
+  <button class="hero-arrow hero-prev" onclick="heroNav(-1)">‹</button>
+  <button class="hero-arrow hero-next" onclick="heroNav(1)">›</button>
+
+  <div class="hero-slide active" id="slide-0">
+    <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 001 · Teatro Real, Madrid · 22 junio 2018</div>
+      <div class="hero-title">Lucia di Lammermoor</div>
+      <div class="hero-sub">Gaetano Donizetti · Italiano</div>
+      <div class="hero-cita">"Remarkable and even outstanding"</div>
+      <div class="hero-cita-fuente">— Seen and Heard International</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-1">
+    <img src="carmen.png" alt="Carmen" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 002 · Teatro Real, Madrid · 23 diciembre 2025</div>
+      <div class="hero-title">Carmen</div>
+      <div class="hero-sub">Georges Bizet · Francés</div>
+      <div class="hero-cita">"La Carmen de nuestra generación"</div>
+      <div class="hero-cita-fuente">— Beckmesser</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-2">
+    <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 003 · Wiener Staatsoper, Viena · 27 marzo 2024</div>
+      <div class="hero-title">Der Rosenkavalier</div>
+      <div class="hero-sub">Richard Strauss · Alemán</div>
+      <div class="hero-cita">"Julia Kleiter, joven en escena e ideal vocalmente como Marschallin"</div>
+      <div class="hero-cita-fuente">— Klassik Begeistert</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-3">
+    <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 004 · Volksoper Wien, Viena · 28 marzo 2024</div>
+      <div class="hero-title">La Traviata</div>
+      <div class="hero-sub">Giuseppe Verdi · Italiano</div>
+      <div class="hero-cita">"Rebecca Nelsen, una Violetta excelente, con voz clara y fresca"</div>
+      <div class="hero-cita-fuente">— Online Merker</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-4">
+    <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 005 · Wiener Staatsoper, Viena · 1 abril 2024</div>
+      <div class="hero-title">Parsifal</div>
+      <div class="hero-sub">Richard Wagner · Alemán</div>
+      <div class="hero-cita">"Uncomfortably stimulating… with a searing logic"</div>
+      <div class="hero-cita-fuente">— Seen and Heard International</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-5">
+    <img src="medea.png" alt="Médée" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 006 · Teatro Real, Madrid · 10 junio 2024</div>
+      <div class="hero-title">Médée</div>
+      <div class="hero-sub">Marc-Antoine Charpentier · Francés</div>
+      <div class="hero-cita">"Todo respira elegancia, sutileza, pero también tensión dramática"</div>
+      <div class="hero-cita-fuente">— Ópera Actual</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-6">
+    <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 007 · Teatro Real, Madrid · 26 diciembre 2023</div>
+      <div class="hero-title">Rigoletto</div>
+      <div class="hero-sub">Giuseppe Verdi · Italiano</div>
+      <div class="hero-cita">"Ludovic Tézier, uno de los referentes actuales para el papel del bufón trágico"</div>
+      <div class="hero-cita-fuente">— Ópera Actual</div>
+    </div>
+  </div>
+
+  <div class="hero-slide" id="slide-7">
+    <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <div class="hero-num">Ficha 008 · Circo Massimo, Roma · 24 julio 2021</div>
+      <div class="hero-title">Messa da Requiem</div>
+      <div class="hero-sub">Giuseppe Verdi · Latín · Concierto al aire libre</div>
+      <div class="hero-cita">"Roma vacía, el Circo Massimo, Verdi bajo las estrellas"</div>
+      <div class="hero-cita-fuente">— Alejandro Iglesias</div>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="hero-dots"></div>
+</div>
+
+<!-- GRILLA -->
+<div class="section-header">
+  <div class="section-title-big">Mi colección · 8 óperas</div>
+  <a class="section-link" href="mis-operas.html">Ver archivo completo →</a>
+</div>
+
+<div class="opera-grid">
+  <a class="opera-card" href="mis-operas.html">
+    <img src="lucia.png" alt="Lucia di Lammermoor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">001</div><div class="op-ph-title">Lucia di Lammermoor</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2018</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 001</div><div class="op-title">Lucia di Lammermoor</div><div class="op-sub">Teatro Real · 2018</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="carmen.png" alt="Carmen" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">002</div><div class="op-ph-title">Carmen</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2025</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 002</div><div class="op-title">Carmen</div><div class="op-sub">Teatro Real · 2025</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="der_rosencavalier.png" alt="Der Rosenkavalier" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">003</div><div class="op-ph-title">Der Rosenkavalier</div><div class="op-ph-line"></div><div class="op-ph-sub">Wiener Staatsoper · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 003</div><div class="op-title">Der Rosenkavalier</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="traviata.png" alt="La Traviata" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">004</div><div class="op-ph-title">La Traviata</div><div class="op-ph-line"></div><div class="op-ph-sub">Volksoper Wien · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 004</div><div class="op-title">La Traviata</div><div class="op-sub">Volksoper Wien · 2024</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="parsifal.png" alt="Parsifal" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">005</div><div class="op-ph-title">Parsifal</div><div class="op-ph-line"></div><div class="op-ph-sub">Wiener Staatsoper · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 005</div><div class="op-title">Parsifal</div><div class="op-sub">Wiener Staatsoper · 2024</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="medea.png" alt="Médée" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">006</div><div class="op-ph-title">Médée</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2024</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 006</div><div class="op-title">Médée</div><div class="op-sub">Teatro Real · 2024</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="rigoletto.png" alt="Rigoletto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">007</div><div class="op-ph-title">Rigoletto</div><div class="op-ph-line"></div><div class="op-ph-sub">Teatro Real · 2023</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 007</div><div class="op-title">Rigoletto</div><div class="op-sub">Teatro Real · 2023</div></div>
+  </a>
+  <a class="opera-card" href="mis-operas.html">
+    <img src="requiem.png" alt="Messa da Requiem" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="op-placeholder" style="display:none"><div class="op-ph-num">008</div><div class="op-ph-title">Messa da Requiem</div><div class="op-ph-line"></div><div class="op-ph-sub">Circo Massimo · 2021</div></div>
+    <div class="opera-overlay"><div class="op-num">Ficha 008</div><div class="op-title">Messa da Requiem</div><div class="op-sub">Circo Massimo · Roma · 2021</div></div>
+  </a>
+</div>
+
+<!-- STRIP -->
 <div class="strip">
   <a class="strip-item" href="mis-operas.html"><div class="strip-num">001</div><div class="strip-title">Lucia di Lammermoor</div><div class="strip-teatro">Teatro Real · 2018</div></a>
   <a class="strip-item" href="mis-operas.html"><div class="strip-num">002</div><div class="strip-title">Carmen</div><div class="strip-teatro">Teatro Real · 2025</div></a>
@@ -156,12 +302,420 @@
   <a class="strip-item" href="mis-operas.html"><div class="strip-num">008</div><div class="strip-title">Messa da Requiem</div><div class="strip-teatro">Circo Massimo · 2021</div></a>
 </div>
 
+<!-- PRÓXIMAS CITAS -->
+<div class="proximas" id="proximas">
+  <div class="proximas-header">
+    <div class="proximas-title">Próximas citas</div>
+    <div class="proximas-sub">Cartelera seleccionada · Viaje Italia julio 2026 + DMV área</div>
+  </div>
+
+  <!-- MADRID -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇪🇸</span> Madrid · 10–15 julio 2026</div>
+    <div class="citas-grid">
+      <div class="cita-card urgente" style="grid-column:1/-1">
+        <span class="cita-badge badge-urgente">Reservar ya</span>
+        <div class="cita-fecha">10–15 julio 2026 · Teatro Real · 19:30</div>
+        <div class="cita-title">Il Trovatore</div>
+        <div class="cita-compositor">Giuseppe Verdi</div>
+        <div class="cita-lugar">Plaza de Isabel II · Madrid</div>
+        <div class="cita-detalle">Reposición de la producción de Francisco Negrín. Cierre de la temporada 2025-26 del Teatro Real. Funciones disponibles entre el 29 junio y el 16 julio — coincide perfectamente con vuestra estancia del 10 al 15 de julio. El Trovatore es la gran ópera tenebrista de Verdi, con algunos de los dúos de soprano y tenor más electrizantes del repertorio.</div>
+        <a class="cita-link" href="https://www.teatroreal.es/es/temporada-actual/opera" target="_blank">teatroreal.es →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROMA -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇮🇹</span> Roma · 16–19 julio 2026</div>
+    <div class="citas-grid">
+      <div class="cita-card urgente" style="grid-column:1/-1">
+        <span class="cita-badge badge-urgente">Reservar ya · Se agota</span>
+        <div class="cita-fecha">18 julio 2026 · Circo Massimo · 21:00</div>
+        <div class="cita-title">Aida</div>
+        <div class="cita-compositor">Giuseppe Verdi</div>
+        <div class="cita-lugar">Via del Circo Massimo · Roma · ~6.000 localidades · 15–170€</div>
+        <div class="cita-detalle">Nuevo allestimento de Davide Livermore para el Teatro dell'Opera di Roma. Temporada estival en el Circo Massimo mientras las Termas de Caracalla están en restauración. Seis funciones: 12, 15, 18, 22, 26 y 28 julio. La del 18 es la ideal para vuestro itinerario. Dirección musical: Daniele Callegari. Protagonistas: Elena Stikhina / Yolanda Auyanet (Aida) · Angela Meade (Amneris).</div>
+        <a class="cita-link" href="https://www.operaroma.it" target="_blank">operaroma.it →</a>
+        <div class="cita-nota">⚡ Segunda vez en el Circo Massimo — conexión directa con la Ficha 008 (Requiem 2021)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NÁPOLES -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇮🇹</span> Nápoles · 20 julio 2026</div>
+    <div class="citas-grid">
+      <div class="cita-card">
+        <span class="cita-badge badge-verificar">Sin función ese día</span>
+        <div class="cita-fecha">20 julio 2026 · Teatro San Carlo</div>
+        <div class="cita-title">Turandot</div>
+        <div class="cita-compositor">Giacomo Puccini</div>
+        <div class="cita-lugar">Via San Carlo 98/F · Nápoles</div>
+        <div class="cita-detalle">Turandot corre del 5 al 15 de julio — termina cinco días antes de vuestra llegada. No hay función el 20 de julio. Se recomienda la visita guiada al teatro (el más antiguo del mundo en funcionamiento continuo, 1737). Reservar en teatrosancarlo.it.</div>
+        <a class="cita-link" href="https://www.teatrosancarlo.it" target="_blank">teatrosancarlo.it →</a>
+      </div>
+      <div class="cita-card urgente">
+        <span class="cita-badge badge-urgente">Opción flexible</span>
+        <div class="cita-fecha">25–31 julio 2026 · Teatro San Carlo</div>
+        <div class="cita-title">Turandot + ballet Coppélia</div>
+        <div class="cita-compositor">Puccini · Delibes</div>
+        <div class="cita-lugar">Teatro San Carlo · Nápoles</div>
+        <div class="cita-detalle">Si se ajusta el itinerario para incluir una noche en Nápoles de vuelta desde Sicilia, hay funciones de Turandot el 25, 26, 28, 30 y 31 de julio. Dir. musical: Vincenzo Milletarì. Reparto: Anna Pirozzi / Brian Jagde. El 25 coincide con vuestra base en Palermo — requeriría reorganizar una etapa.</div>
+        <a class="cita-link" href="https://www.teatrosancarlo.it" target="_blank">teatrosancarlo.it →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PALERMO -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇮🇹</span> Palermo · 25–28 julio 2026</div>
+    <div class="citas-grid">
+      <div class="cita-card urgente" style="grid-column:1/-1">
+        <span class="cita-badge badge-urgente">Verificar programa</span>
+        <div class="cita-fecha">25–28 julio 2026 · Teatro Massimo</div>
+        <div class="cita-title">Programa de verano 2026</div>
+        <div class="cita-compositor">Por confirmar</div>
+        <div class="cita-lugar">Piazza Verdi · Palermo · El mayor teatro de ópera de Italia · 3º de Europa</div>
+        <div class="cita-detalle">El Teatro Massimo tiene programa de verano activo en julio, con funciones en la sala principal y en los Giardini del Teatro di Verdura (al aire libre desde el 19 julio). La temporada 2025-26 incluye Rigoletto con Ludovic Tézier y Semiramide — verificar qué funciones corresponden a finales de julio. El teatro está a 5 minutos a pie del Mercado del Capo.</div>
+        <a class="cita-link" href="https://www.teatromassimo.it/en/calendar/" target="_blank">teatromassimo.it →</a>
+        <div class="cita-nota">★ Noche ideal: 25 julio (Día 10 del itinerario — Palermo ciudad sin coche)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERA / COSENZA -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇮🇹</span> Sur de Italia · 29–31 julio 2026</div>
+    <div class="citas-grid">
+      <div class="cita-card">
+        <span class="cita-badge badge-verificar">Verificar</span>
+        <div class="cita-fecha">30–31 julio 2026 · Cava del Sole</div>
+        <div class="cita-title">Voci del Mediterraneo</div>
+        <div class="cita-compositor">Programa Matera 2026</div>
+        <div class="cita-lugar">Cava del Sole · Matera · Capital Mediterránea de la Cultura 2026</div>
+        <div class="cita-detalle">La Cava del Sole es el auditorio al aire libre natural más espectacular de la región — una cantera excavada en la roca viva. El programa Matera 2026 (20 marzo – 28 noviembre) incluye Voci del Mediterraneo y eventos musicales en agosto. Verificar programación exacta en matera2026.it.</div>
+        <a class="cita-link" href="https://www.matera2026.it" target="_blank">matera2026.it →</a>
+      </div>
+      <div class="cita-card">
+        <span class="cita-badge badge-verificar">Verificar</span>
+        <div class="cita-fecha">29 julio 2026 · Teatro Rendano</div>
+        <div class="cita-title">Temporada de verano</div>
+        <div class="cita-compositor">Por confirmar</div>
+        <div class="cita-lugar">Piazza XV Marzo · Cosenza</div>
+        <div class="cita-detalle">El Teatro Rendano de Cosenza es el teatro histórico de Calabria. Verificar programación de verano para el 29 de julio — día de tránsito Palermo → Matera. Posible parada cultural.</div>
+        <a class="cita-link" href="https://www.teatrorendano.it" target="_blank">teatrorendano.it →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DMV LOCAL -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇺🇸</span> DMV · Área local · Temporada 2026</div>
+    <div class="citas-grid">
+      <div class="cita-card">
+        <span class="cita-badge badge-local">Wolf Trap · Vienna, VA</span>
+        <div class="cita-fecha">18, 21, 25, 27 junio 2026 · The Barns at Wolf Trap</div>
+        <div class="cita-title">La Cenerentola</div>
+        <div class="cita-compositor">Gioachino Rossini</div>
+        <div class="cita-lugar">1551 Trap Rd · Vienna, VA · Wolf Trap Opera</div>
+        <div class="cita-detalle">La Cenicienta rossiniana en el íntimo Barns at Wolf Trap. Artistas emergentes del programa Wolf Trap Opera. Dir. Louis Lohraseb. Una noche perfecta en el bosque de Virginia antes del verano.</div>
+        <a class="cita-link" href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
+      </div>
+      <div class="cita-card">
+        <span class="cita-badge badge-local">Wolf Trap · Vienna, VA</span>
+        <div class="cita-fecha">17, 19, 23, 25 julio 2026 · The Barns</div>
+        <div class="cita-title">Eugene Onegin</div>
+        <div class="cita-compositor">Piotr Ilyich Tchaikovsky</div>
+        <div class="cita-lugar">1551 Trap Rd · Virginia · Wolf Trap Opera</div>
+        <div class="cita-detalle">Nota: coincide con el viaje a Italia (16 jul – 1 ago). No disponible. Se incluye como referencia para la próxima temporada.</div>
+        <a class="cita-link" href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
+        <div class="cita-nota">⚠ Coincide con viaje a Italia</div>
+      </div>
+      <div class="cita-card urgente">
+        <span class="cita-badge badge-verano">Recomendada · Filene Center</span>
+        <div class="cita-fecha">7 agosto 2026 · Filene Center · Al aire libre</div>
+        <div class="cita-title">Tosca</div>
+        <div class="cita-compositor">Giacomo Puccini</div>
+        <div class="cita-lugar">Wolf Trap National Park · Vienna, VA</div>
+        <div class="cita-detalle">Gran producción al aire libre en el Filene Center (7.000 localidades). Puccini en el parque nacional — una noche de verano excepcional justo al regresar de Italia. Dir. José Luis Gómez. Primera oportunidad de ver Tosca en el área DMV esta temporada.</div>
+        <a class="cita-link" href="https://www.wolftrap.org" target="_blank">wolftrap.org →</a>
+        <div class="cita-nota">★ Primera semana de regreso de Italia — ideal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WNO 2026-27 -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇺🇸</span> Washington National Opera · Temporada 2026-27</div>
+    <div class="citas-grid">
+      <div class="cita-card">
+        <span class="cita-badge badge-local">WNO · Nueva sede independiente</span>
+        <div class="cita-fecha">Noviembre 2026</div>
+        <div class="cita-title">Madama Butterfly</div>
+        <div class="cita-compositor">Giacomo Puccini</div>
+        <div class="cita-lugar">Washington DC · WNO (fuera del Kennedy Center desde enero 2026)</div>
+        <div class="cita-detalle">Primera temporada completa de la WNO como compañía independiente tras separarse del Kennedy Center. Nueva producción dirigida por E. Loren Meeker con coreografía de Alvin Ailey. Temporada 70º aniversario de la compañía. Entradas individuales a la venta desde agosto 2026.</div>
+        <a class="cita-link" href="https://washnatopera.org" target="_blank">washnatopera.org →</a>
+      </div>
+      <div class="cita-card">
+        <span class="cita-badge badge-local">WNO · 2026-27</span>
+        <div class="cita-fecha">Noviembre 2026</div>
+        <div class="cita-title">Nixon in China</div>
+        <div class="cita-compositor">John Adams</div>
+        <div class="cita-lugar">Washington DC · WNO</div>
+        <div class="cita-detalle">Ópera contemporánea americana de referencia — la visita de Nixon a China en 1972 convertida en drama lírico. Una de las grandes obras del repertorio del siglo XX. Oportunidad excepcional de conocer la ópera americana en su contexto histórico.</div>
+        <a class="cita-link" href="https://washnatopera.org" target="_blank">washnatopera.org →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NYC -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇺🇸</span> Nueva York · Metropolitan Opera · 2026-27</div>
+    <div class="citas-grid">
+      <div class="cita-card" style="grid-column:1/-1">
+        <span class="cita-badge badge-local">Met Opera · Lincoln Center</span>
+        <div class="cita-fecha">Septiembre 2026 – Junio 2027</div>
+        <div class="cita-title">Temporada 2026-27 · 60º aniversario en Lincoln Center</div>
+        <div class="cita-compositor">Verdi · Mazzoli · Puts · Simon · y más</div>
+        <div class="cita-lugar">30 Lincoln Center Plaza · New York, NY · 25–480$</div>
+        <div class="cita-detalle">Temporada Diamond Jubilee (60 años en Lincoln Center). Abre el 22 septiembre 2026 con Macbeth de Verdi. Incluye 5 nuevas producciones y estrenos mundiales de Missy Mazzoli (Lincoln in the Bardo), Kevin Puts y Carlos Simon. Gala 60 aniversario el 25 mayo 2027. Entradas individuales a la venta próximamente.</div>
+        <a class="cita-link" href="https://www.metopera.org/season/2026-27-season/" target="_blank">metopera.org →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHILADELPHIA -->
+  <div class="proximas-zona">
+    <div class="zona-label"><span class="zona-flag">🇺🇸</span> Philadelphia · Opera Philadelphia · 2026-27</div>
+    <div class="citas-grid">
+      <div class="cita-card">
+        <span class="cita-badge badge-local">Opera Philadelphia · Sep 2026</span>
+        <div class="cita-fecha">Septiembre 2026 · Academy of Music</div>
+        <div class="cita-title">Mitridate, re di Ponto</div>
+        <div class="cita-compositor">Wolfgang Amadeus Mozart (14 años)</div>
+        <div class="cita-lugar">Broad St · Philadelphia · ~2.5h desde DC</div>
+        <div class="cita-detalle">Rareza absoluta del joven Mozart con reparto de lujo: Lawrence Brownlee (tenor), Anthony Roth Costanzo (Farnace) y Lauren Snouffer. Dir. Emma Griffin. Opera Philadelphia es una de las compañías más innovadoras de EEUU — entradas desde 11$ con Pick Your Price.</div>
+        <a class="cita-link" href="https://www.operaphila.org" target="_blank">operaphila.org →</a>
+      </div>
+      <div class="cita-card">
+        <span class="cita-badge badge-local">Opera Philadelphia · Abr 2027</span>
+        <div class="cita-fecha">17–25 abril 2027 · Academy of Music</div>
+        <div class="cita-title">Aida</div>
+        <div class="cita-compositor">Giuseppe Verdi</div>
+        <div class="cita-lugar">Broad St · Philadelphia</div>
+        <div class="cita-detalle">Nueva producción co-dirigida por Kaneza Schaal y Christopher Myers. Protagonista: Tiffany Townsend (debut en el rol). Cuatro funciones. Conexión directa con la Aida de Roma (Circo Massimo, julio 2026) — comparar producciones.</div>
+        <a class="cita-link" href="https://www.operaphila.org" target="_blank">operaphila.org →</a>
+        <div class="cita-nota">★ Misma ópera que en Roma — interesante comparar</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  <!-- OTRAS CITAS -->
+  <div class="proximas" id="otras-citas" style="border-top:1px solid var(--linea);padding-top:3rem;">
+    <div class="proximas-header">
+      <div class="proximas-title">Otras citas</div>
+      <div class="proximas-sub">Cine · Arte · Literatura · Música · Naturaleza</div>
+    </div>
+
+    <!-- CINE -->
+    <div class="proximas-zona">
+      <div class="zona-label"><span class="zona-flag">🎬</span> Cine</div>
+      <div class="citas-grid">
+        <div class="cita-card urgente" style="grid-column:1/-1">
+          <span class="cita-badge badge-urgente">Estreno mundial · Reservar IMAX ya</span>
+          <div class="cita-fecha">17 julio 2026 · IMAX 70mm</div>
+          <div class="cita-title">The Odyssey</div>
+          <div class="cita-compositor">Christopher Nolan · Universal Pictures</div>
+          <div class="cita-lugar">IMAX 70mm · Worldwide · Estreno en Italia el 16 julio (un día antes) · Roma: The Space Cinema Moderno, Piazza della Repubblica</div>
+          <div class="cita-detalle">La Odisea de Homero llevada al cine por Nolan — la primera película rodada íntegramente con cámaras IMAX de 70mm. Matt Damon (Odiseo), Anne Hathaway (Penélope), Tom Holland, Zendaya (Atenea), Charlize Theron (Calipso), Lupita Nyong'o (Helena). Fotografía: Hoyte van Hoytema. Música: Ludwig Göransson. Rodada en Favignana (Sicilia), Grecia, Islandia, Marruecos y Escocia. Presupuesto: 250 millones de dólares. Conexión directa con vuestra lectura de La Odisea y el viaje por Sicilia — cruzaréis el Estrecho de Mesina (Escila y Caribdis) y pasaréis por Favignana (isla de los Cíclopes en Homero), donde Nolan rodó parte de la película.</div>
+          <a class="cita-link" href="https://www.universalpictures.com" target="_blank">universalpictures.com →</a>
+          <div class="cita-nota">★ Ver en Roma el 16 o 17 julio, antes de salir hacia Nápoles — experiencia única en el país donde se rodó</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTE / PUBLICACIONES -->
+    <div class="proximas-zona">
+      <div class="zona-label"><span class="zona-flag">🖤</span> Arte · Publicaciones</div>
+      <div class="citas-grid">
+        <div class="cita-card">
+          <span class="cita-badge badge-verano">FMR · Solsticio de verano</span>
+          <div class="cita-fecha">21 junio 2026 · Número de verano</div>
+          <div class="cita-title">FMR Magazine Nº 18</div>
+          <div class="cita-compositor">Franco Maria Ricci · Ed. Laura Casalis Ricci</div>
+          <div class="cita-lugar">fmrmagazine.com · Entrega en casa · Precio suscripción anual: 4 números</div>
+          <div class="cita-detalle">El número de verano de FMR — la revista más bella del mundo — llega el 21 de junio, solsticio de verano. Cuatro números al año, siempre en los solsticios y equinoccios. Esta nueva etapa (desde 2022, dirigida por Laura Casalis) mantiene el espíritu de Franco Maria Ricci: Bodoni, papel de lujo, fondo negro, colaboradores como Orhan Pamuk, Italo Calvino o Umberto Eco en su historia. El número 14 incluyó una colaboración con el Museo del Prado. Suscripción incluye acceso digital y entrada gratuita al Labirinto della Masone (Fontanellato, Parma) — uno de los laberintos más grandes del mundo.</div>
+          <a class="cita-link" href="https://www.fmrmagazine.com" target="_blank">fmrmagazine.com →</a>
+          <div class="cita-nota">★ El número de otoño (21 sep) llega al regreso del viaje a Italia — perfecto momento para releer</div>
+        </div>
+        <div class="cita-card">
+          <span class="cita-badge badge-verano">FMR · Labirinto della Masone</span>
+          <div class="cita-fecha">Abierto todo el año · Fontanellato, Parma</div>
+          <div class="cita-title">Labirinto della Masone</div>
+          <div class="cita-compositor">Franco Maria Ricci · 7 hectáreas de bambú</div>
+          <div class="cita-lugar">Strada Masone 121 · Fontanellato (PR) · ~1.5h desde Milán · ~40min desde Parma</div>
+          <div class="cita-detalle">El laberinto más grande del mundo construido por Franco Maria Ricci antes de morir en 2020 — 7 hectáreas de bambú con una colección de arte, una biblioteca y un restaurante en el interior. Referencia: Borges, Calvino y el concepto del libro como laberinto. Incluido gratis con suscripción a FMR. Posible visita en ruta Madrid-Italia si se para en el norte de Italia.</div>
+          <a class="cita-link" href="https://www.francomariaricci.com" target="_blank">francomariaricci.com →</a>
+        </div>
+        <div class="cita-card">
+          <span class="cita-badge badge-local">Museos DMV · Washington DC</span>
+          <div class="cita-fecha">Verano–otoño 2026</div>
+          <div class="cita-title">National Gallery of Art · Exposiciones 2026</div>
+          <div class="cita-compositor">National Mall · Washington DC · Entrada gratuita</div>
+          <div class="cita-lugar">Constitution Ave NW · Washington DC</div>
+          <div class="cita-detalle">La National Gallery programa habitualmente exposiciones temporales de primera línea — verificar cartelera de otoño 2026 en nga.gov. También el Hirshhorn y el Smithsonian American Art Museum tienen programación muy activa. Entrada siempre gratuita.</div>
+          <a class="cita-link" href="https://www.nga.gov" target="_blank">nga.gov →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LITERATURA / FLAMENCO -->
+    <div class="proximas-zona">
+      <div class="zona-label"><span class="zona-flag">📚</span> Literatura · Flamenco · Música</div>
+      <div class="citas-grid">
+        <div class="cita-card">
+          <span class="cita-badge badge-local">Flamenco · DC area</span>
+          <div class="cita-fecha">Temporada 2026</div>
+          <div class="cita-title">GALA Hispanic Theatre</div>
+          <div class="cita-compositor">Flamenco · Teatro español · DC</div>
+          <div class="cita-lugar">3333 14th St NW · Washington DC · ~20min desde Baltimore</div>
+          <div class="cita-detalle">El GALA Hispanic Theatre es el principal teatro hispanohablante de DC, con programación regular de flamenco, zarzuela y teatro en español. Verificar si hay espectáculo de flamenco en su temporada otoño 2026. Conexión directa con tu interés en Camarón y el flamenco clásico.</div>
+          <a class="cita-link" href="https://www.galatheatre.org" target="_blank">galatheatre.org →</a>
+        </div>
+        <div class="cita-card">
+          <span class="cita-badge badge-verano">Festival de Otoño · Madrid</span>
+          <div class="cita-fecha">Octubre–noviembre 2026 · Madrid</div>
+          <div class="cita-title">Festival de Otoño de Madrid</div>
+          <div class="cita-compositor">Teatro · Danza · Flamenco · Madrid</div>
+          <div class="cita-lugar">Teatros de Madrid · Comunidad de Madrid</div>
+          <div class="cita-detalle">El Festival de Otoño de Madrid es uno de los festivales de artes escénicas más importantes de España, con programación internacional de teatro, danza y flamenco. Si hay regreso a Madrid en otoño 2026, vale la pena verificar su cartelera — suele incluir las mejores compañías flamencas del momento.</div>
+          <a class="cita-link" href="https://www.madrid.es/festivaldeotono" target="_blank">madrid.es →</a>
+        </div>
+        <div class="cita-card">
+          <span class="cita-badge badge-verano">Italia · Sicilia</span>
+          <div class="cita-fecha">Julio 2026 · Siracusa</div>
+          <div class="cita-title">Teatro Greco di Siracusa · Representaciones</div>
+          <div class="cita-compositor">Teatro clásico griego · Fundazione INDA</div>
+          <div class="cita-lugar">Parco Archeologico · Siracusa, Sicilia</div>
+          <div class="cita-detalle">Las representaciones anuales de teatro griego clásico en el Teatro Greco de Siracusa — uno de los teatros al aire libre más antiguos del mundo, tallado en la roca. La Fundazione INDA programa cada verano tragedias y comedias griegas en griego antiguo y en italiano. El Día 13 del itinerario incluye visita a Siracusa — verificar si hay función esa noche (28 julio). Extraordinaria conexión con la lectura de La Odisea.</div>
+          <a class="cita-link" href="https://www.indafondazione.org" target="_blank">indafondazione.org →</a>
+          <div class="cita-nota">★ Posible función el 28 julio — Día 13 del itinerario (excursión Siracusa)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATURALEZA / WINDSURFING -->
+    <div class="proximas-zona">
+      <div class="zona-label"><span class="zona-flag">🌊</span> Naturaleza · Mar</div>
+      <div class="citas-grid">
+        <div class="cita-card">
+          <span class="cita-badge badge-verano">Windsurfing · DMV</span>
+          <div class="cita-fecha">Verano 2026 · Mayo–Septiembre</div>
+          <div class="cita-title">Beverly Triton Nature Park</div>
+          <div class="cita-compositor">Chesapeake Bay · Edgewater, MD</div>
+          <div class="cita-lugar">Edgewater, Maryland · ~45min desde Baltimore · Tu propio equipo</div>
+          <div class="cita-detalle">Temporada de windsurfing en la Chesapeake Bay. Requiere reserva de pase los fines de semana de Memorial Day a Labor Day (yourpassnow.com — abre el jueves anterior). Condiciones tranquilas, ideal para sesiones relajadas. Sin alquiler de equipo — traer el propio. Sin socorristas. Bug spray imprescindible en verano.</div>
+          <a class="cita-link" href="https://www.yourpassnow.com" target="_blank">yourpassnow.com →</a>
+        </div>
+        <div class="cita-card">
+          <span class="cita-badge badge-verano">Mar Tirreno · Sicilia</span>
+          <div class="cita-fecha">Julio 2026 · Costa siciliana</div>
+          <div class="cita-title">Favignana · Islas Egadas</div>
+          <div class="cita-compositor">La isla donde rodó Nolan · Costa jónica siciliana</div>
+          <div class="cita-lugar">Favignana · Frente a Trapani, Sicilia</div>
+          <div class="cita-detalle">Favignana — la "isla de las cabras" homérica, posible escenario de la tierra de los Cíclopes en La Odisea — es donde Nolan rodó parte de The Odyssey. Aguas cristalinas del Mediterráneo. El Día 11 del itinerario (Erice → Segesta → Castelvetrano) pasa cerca. Posible excursión en ferry desde Trapani (30 min).</div>
+          <a class="cita-link" href="https://www.egadiislands.org" target="_blank">egadiislands.org →</a>
+          <div class="cita-nota">★ Favignana: donde Nolan rodó The Odyssey · Conexión Homero–Nolan–viaje</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-teatros">
     <span>Teatro Real</span> &nbsp;·&nbsp; Wiener Staatsoper &nbsp;·&nbsp; Volksoper Wien &nbsp;·&nbsp; <span>Circo Massimo</span>
   </div>
   <a class="footer-link" href="mis-operas.html">Ver archivo completo →</a>
 </footer>
+
+<script>
+// ── DATOS COLECCIÓN ──
+const OPERAS = [
+  {num:'001',titulo:'Lucia di Lammermoor',compositor:'Gaetano Donizetti',teatro:'Teatro Real',ciudad:'Madrid',fecha:'2018',cantantes:'Lisette Oropesa, Javier Camarena, Artur Ruciński, Roberto Tagliavini'},
+  {num:'002',titulo:'Carmen',compositor:'Georges Bizet',teatro:'Teatro Real',ciudad:'Madrid',fecha:'2025',cantantes:'Aigul Akhmetshina, Charles Castronovo, Lucas Meachem, Adriana González'},
+  {num:'003',titulo:'Der Rosenkavalier',compositor:'Richard Strauss',teatro:'Wiener Staatsoper',ciudad:'Viena',fecha:'2024',cantantes:'Julia Kleiter, Christof Fischesser, Christina Bock, Slávka Zámečníková'},
+  {num:'004',titulo:'La Traviata',compositor:'Giuseppe Verdi',teatro:'Volksoper Wien',ciudad:'Viena',fecha:'2024',cantantes:'Rebecca Nelsen, David Kerber'},
+  {num:'005',titulo:'Parsifal',compositor:'Richard Wagner',teatro:'Wiener Staatsoper',ciudad:'Viena',fecha:'2024',cantantes:'Elīna Garanča, Daniel Frank, Günther Groissböck, Michael Nagy'},
+  {num:'006',titulo:'Médée',compositor:'Marc-Antoine Charpentier',teatro:'Teatro Real',ciudad:'Madrid',fecha:'2024',cantantes:'Véronique Gens, Reinoud van Mechelen, William Christie'},
+  {num:'007',titulo:'Rigoletto',compositor:'Giuseppe Verdi',teatro:'Teatro Real',ciudad:'Madrid',fecha:'2023',cantantes:'Ludovic Tézier, Javier Camarena, Adela Zaharia, Nicola Luisotti'},
+  {num:'008',titulo:'Messa da Requiem',compositor:'Giuseppe Verdi',teatro:'Circo Massimo',ciudad:'Roma',fecha:'2021',cantantes:'Krassimira Stoyanova, Daniela Barcellona, Saimir Pirgu, Michele Pertusi, Myung-Whun Chung'}
+];
+
+// ── BUSCADOR ──
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if(q.length < 2){searchResults.style.display='none';return;}
+  const matches = OPERAS.filter(o =>
+    o.titulo.toLowerCase().includes(q) ||
+    o.compositor.toLowerCase().includes(q) ||
+    o.teatro.toLowerCase().includes(q) ||
+    o.ciudad.toLowerCase().includes(q) ||
+    o.cantantes.toLowerCase().includes(q)
+  );
+  if(matches.length === 0){
+    searchResults.innerHTML = '<div class="search-empty">Sin resultados para "'+this.value+'"</div>';
+  } else {
+    searchResults.innerHTML = matches.map(o => `
+      <a class="search-result-item" href="mis-operas.html">
+        <div class="sri-num">Ficha ${o.num}</div>
+        <div class="sri-title">${o.titulo}</div>
+        <div class="sri-sub">${o.compositor} · ${o.teatro} · ${o.ciudad} · ${o.fecha}</div>
+      </a>`).join('');
+  }
+  searchResults.style.display = 'block';
+});
+
+document.addEventListener('click', function(e) {
+  if(!e.target.closest('.search-bar')) searchResults.style.display = 'none';
+});
+
+// ── HERO ROTATIVO ──
+let heroIdx = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dotsContainer = document.getElementById('hero-dots');
+let heroTimer;
+
+slides.forEach((_,i) => {
+  const dot = document.createElement('div');
+  dot.className = 'hero-dot' + (i===0?' active':'');
+  dot.onclick = () => goSlide(i);
+  dotsContainer.appendChild(dot);
+});
+
+function goSlide(n) {
+  slides[heroIdx].classList.remove('active');
+  document.querySelectorAll('.hero-dot')[heroIdx].classList.remove('active');
+  heroIdx = (n + slides.length) % slides.length;
+  slides[heroIdx].classList.add('active');
+  document.querySelectorAll('.hero-dot')[heroIdx].classList.add('active');
+  clearInterval(heroTimer);
+  heroTimer = setInterval(() => goSlide(heroIdx+1), 6000);
+}
+
+function heroNav(dir) { goSlide(heroIdx + dir); }
+
+heroTimer = setInterval(() => goSlide(heroIdx+1), 6000);
+</script>
 
 </body>
 </html>
