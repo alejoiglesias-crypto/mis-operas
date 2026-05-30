@@ -352,6 +352,8 @@ function actualizarCantante(idx,val){
 function actualizarImg(v){actualizar('img_url',v);setTimeout(()=>renderDetail(),100);}
 async function iniciar(){
   await cargarDatos();
+  window.operas = operas;
+  window.guardar = guardar;
   const params = new URLSearchParams(window.location.search);
   const idParam = params.get('id');
   if(idParam){
