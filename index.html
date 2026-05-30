@@ -11,22 +11,26 @@
   body{background:var(--blanco);color:var(--negro);font-family:'EB Garamond',serif;min-height:100vh;}
 
   /* HEADER */
-  header{background:var(--blanco);border-bottom:1px solid var(--negro);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:200;}
-  .logo{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--negro);text-decoration:none;}
-  .logo em{color:var(--borgona);font-style:italic;}
-  nav{display:flex;gap:2rem;align-items:center;}
-  nav a{font-family:'Montserrat',sans-serif;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);text-decoration:none;transition:color 0.2s;}
+  header{background:var(--blanco);border-bottom:1px solid var(--negro);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:200;}
+  .logo{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--negro);text-decoration:none;display:flex;align-items:baseline;gap:0.15em;}
+  .logo em{color:var(--borgona);font-style:italic;font-size:1.6rem;letter-spacing:0.08em;}
+  .logo-sep{width:1px;height:1.1rem;background:var(--linea);margin:0 1rem;display:inline-block;vertical-align:middle;}
+  .header-right{display:flex;align-items:center;gap:2rem;}
+  nav{display:flex;gap:1.8rem;align-items:center;}
+  nav a{font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);text-decoration:none;transition:color 0.2s;}
   nav a:hover{color:var(--borgona);}
-  .nav-cta{padding:0.4rem 1.1rem;border:1px solid var(--borgona);color:var(--borgona)!important;}
+  .nav-cta{padding:0.35rem 1rem;border:1px solid var(--borgona);color:var(--borgona)!important;}
   .nav-cta:hover{background:var(--borgona);color:var(--blanco)!important;}
+  .header-search{display:flex;align-items:center;gap:0.5rem;border-left:0.5px solid var(--linea);padding-left:1.5rem;}
+  .header-search-input{font-family:'EB Garamond',serif;font-size:0.9rem;font-style:italic;background:transparent;border:none;outline:none;color:var(--negro);width:180px;}
+  .header-search-input::placeholder{color:var(--gris);}
+  .header-search-icon{font-size:0.75rem;color:var(--gris);}
 
   /* BUSCADOR */
-  .search-bar{background:var(--crema);border-bottom:1px solid var(--linea);padding:0.8rem 3rem;display:flex;align-items:center;gap:1rem;}
-  .search-input{flex:1;max-width:500px;font-family:'EB Garamond',serif;font-size:1rem;background:var(--blanco);border:0.5px solid var(--linea);padding:0.5rem 1rem;outline:none;color:var(--negro);}
-  .search-input:focus{border-color:var(--borgona);}
-  .search-input::placeholder{color:var(--gris);font-style:italic;}
-  .search-label{font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris);}
-  #search-results{display:none;position:absolute;top:120px;left:3rem;right:3rem;background:var(--blanco);border:0.5px solid var(--linea);z-index:150;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+  .search-bar{display:none;}
+  .search-input{display:none;}
+  .search-label{display:none;}
+  #search-results{display:none;position:fixed;top:73px;right:3rem;width:360px;background:var(--blanco);border:0.5px solid var(--linea);z-index:150;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
   .search-result-item{padding:0.8rem 1.2rem;border-bottom:0.5px solid var(--linea);cursor:pointer;transition:background 0.15s;text-decoration:none;display:block;}
   .search-result-item:hover{background:var(--crema);}
   .sri-num{font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.22em;color:var(--borgona);text-transform:uppercase;margin-bottom:0.15rem;}
@@ -165,19 +169,19 @@
 
 <header>
   <a class="logo" href="index.html">Mis <em>Óperas</em></a>
-  <nav>
-    <a href="#proximas">Cartelera</a>
-    <a href="mis-operas.html">Colección</a>
-    <a href="mis-operas.html" class="nav-cta">Ver archivo →</a>
-  </nav>
+  <div class="header-right">
+    <nav>
+      <a href="#proximas">Cartelera</a>
+      <a href="mis-operas.html">Colección</a>
+      <a href="mis-operas.html" class="nav-cta">Ver archivo →</a>
+    </nav>
+    <div class="header-search">
+      <span class="header-search-icon">🔍</span>
+      <input class="header-search-input" id="search-input" type="text" placeholder="Buscar en la colección…">
+    </div>
+  </div>
 </header>
-
-<!-- BUSCADOR -->
-<div class="search-bar" style="position:relative;">
-  <span class="search-label">Buscar</span>
-  <input class="search-input" id="search-input" type="text" placeholder="Título, compositor, cantante, teatro...">
-  <div id="search-results"></div>
-</div>
+<div id="search-results"></div>
 
 <!-- HERO ROTATIVO -->
 <div class="hero" id="hero" onclick="heroClick(event)">
@@ -718,6 +722,12 @@
 </footer>
 
 <script>
+// ── BÚSQUEDA EN CABECERA ──
+document.addEventListener('click', function(e) {
+  if(!e.target.closest('.header-search') && !e.target.closest('#search-results'))
+    document.getElementById('search-results').style.display='none';
+});
+
 // ── DATOS COLECCIÓN ──
 const OPERAS = [
   {num:'001',titulo:'Lucia di Lammermoor',compositor:'Gaetano Donizetti',teatro:'Teatro Real',ciudad:'Madrid',fecha:'2018',cantantes:'Lisette Oropesa, Javier Camarena, Artur Ruciński, Roberto Tagliavini'},
@@ -734,7 +744,7 @@ const OPERAS = [
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 
-searchInput.addEventListener('input', function() {
+document.getElementById('search-input').addEventListener('input', function() {
   const q = this.value.trim().toLowerCase();
   if(q.length < 2){searchResults.style.display='none';return;}
   const matches = OPERAS.filter(o =>
@@ -757,9 +767,7 @@ searchInput.addEventListener('input', function() {
   searchResults.style.display = 'block';
 });
 
-document.addEventListener('click', function(e) {
-  if(!e.target.closest('.search-bar')) searchResults.style.display = 'none';
-});
+
 
 // ── HERO ROTATIVO ──
 let heroIdx = 0;
