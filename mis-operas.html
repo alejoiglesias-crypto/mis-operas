@@ -277,8 +277,7 @@ function renderDetail(){
       </div></div>
     <div class="section"><div class="section-title">Reparto</div>
       <table class="reparto-table"><thead><tr><th>Personaje</th><th>Cuerda</th><th>Intérprete</th></tr></thead>
-<input class="poster-url-input" placeholder="Pega URL del cartel..." value="${esc(o.img_url||'')}" onchange="actualizarImg(this.value)" oninput="marcarCambio()" style="${o.img_url ? 'display:none;' : ''}">      <div class="fields-grid">
-        ${ff('Producción de origen','produccion_origen',o.produccion_origen)}${f('Tipo','tipo_produccion',o.tipo_produccion)}
+<input class="poster-url-input" placeholder="Pega URL del cartel..." value="${esc(o.img_url||'')}" onchange="actualizarImg(this.value)" oninput="marcarCambio()" style="${o.img_url ? 'display:none;' : ''}">        ${ff('Producción de origen','produccion_origen',o.produccion_origen)}${f('Tipo','tipo_produccion',o.tipo_produccion)}
         ${f('Ambientación','ambientacion',o.ambientacion)}${ft('Propuesta escénica','propuesta_escenica',o.propuesta_escenica)}
         ${ff('Elemento singular','elemento_singular',o.elemento_singular)}
       </div></div>
